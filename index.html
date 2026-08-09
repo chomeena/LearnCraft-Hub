@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>LearnCraft Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .scroll-top:hover {
+            background: #1e3a8a;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+
+            <img src="images/logo.png" alt="Logo" class="logo">
+
+            <nav id="primaryNav">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="projects.html">Projects & Practice</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="faq-contact.html">FAQ & Contact</a>
+            </nav>
+
+            <div class="navbar-search" id="navbarSearch">
+                <button class="navbar-search-toggle" id="navbarSearchToggle" aria-label="Search courses">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div class="navbar-search-panel">
+                    <div class="navbar-search-bar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="navSearchInput" placeholder="Search 40+ courses...">
+                    </div>
+                    <div class="navbar-search-results" id="navSearchResults"></div>
+                </div>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- SIDE SECTION NAV -->
+    <nav class="side-nav" aria-label="Page sections">
+        <a href="#home" class="side-nav-link active" data-tooltip="Home">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 11.5 12 4l9 7.5"></path>
+                <path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"></path>
+            </svg>
+        </a>
+        <a href="#courses" class="side-nav-link" data-tooltip="Courses">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"></path>
+                <path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"></path>
+            </svg>
+        </a>
+        <a href="#showcase" class="side-nav-link" data-tooltip="Projects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="7" width="18" height="12" rx="2"></rect>
+                <path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"></path>
+            </svg>
+        </a>
+        <a href="#certificate" class="side-nav-link" data-tooltip="Certificate">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5"></circle>
+                <path d="M8.5 12.5 7 21l5-2.5 5 2.5-1.5-8.5"></path>
+            </svg>
+        </a>
+        <a href="faq-contact.html" class="side-nav-link" data-tooltip="Contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+            </svg>
+        </a>
+    </nav>
+
+    <section class="hero" id="home">
+
+        <div class="hero-text">
+
+            <span class="hero-eyebrow">Learn. Practice. Grow. Succeed.</span>
+
+            <h1>
+                Learn Today.<br>
+                Build Tomorrow’s Tech Career.
+            </h1>
+
+            <p>
+                Industry-focused courses with real-world projects,
+                mentorship, and practical learning experiences.
+            </p>
+
+            <a href="courses.html" class="btn">
+                Explore Courses
+            </a>
+
+            <div class="badges">
+                <div class="badge">🏆 Top Rated</div>
+                <div class="badge">✅ ISO Certified</div>
+                <div class="badge">🌟 Award Winning</div>
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <img src="images/student.png" alt="Students Learning">
+        </div>
+
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <span class="trust-icon">🎓</span>
+            <span><strong>10,000+</strong> Students Enrolled</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">⭐</span>
+            <span><strong>4.9/5</strong> Student Rating</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">📜</span>
+            <span><strong>50+</strong> Certified Courses</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">💼</span>
+            <span><strong>100%</strong> Placement Support</span>
+        </div>
+    </div>
+
+    <!-- WHY CHOOSE US -->
+    <section class="why-us">
+
+    <h2>Why Choose LearnCraft Hub?</h2>
+    <p class="section-subtitle">Everything you need to learn, practice, and build a successful career.</p>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <h3>Structured Learning</h3>
+            <p>Well-structured courses designed by industry experts for solid concept building.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <h3>Practice-Based Skill Development</h3>
+            <p>Learn by doing with hands-on projects and real-world coding challenges.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"></circle><path d="M2 21v-1a7 7 0 0 1 7-7"></path><path d="M16 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M14 21v-1a4.5 4.5 0 0 1 8 0v1"></path></svg>
+            </div>
+            <h3>Career Guidance Support</h3>
+            <p>Get expert mentorship, career roadmaps, and personalized guidance.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"></path></svg>
+            </div>
+            <h3>Beginner-Friendly Platform</h3>
+            <p>Start from basics and learn at your own pace with easy explanations.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18z"></path></svg>
+            </div>
+            <h3>Learn Anytime, Anywhere</h3>
+            <p>Access courses anytime on any device and learn without limits.</p>
+        </div>
+
+    </div>
+
+    </section>
+
+    <!-- TOOLS & TECHNOLOGIES + COURSE SEARCH (side by side) -->
+    <section class="pair-row tools-search-row">
+
+    <div class="info-card partners">
+    <p>Tools & Technologies You'll Learn</p>
+    <div class="partner-logos">
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python" onerror="this.style.display='none'">Python</span>
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React" onerror="this.style.display='none'">React</span>
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" alt="Node.js" onerror="this.style.display='none'">Node.js</span>
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg" alt="MongoDB" onerror="this.style.display='none'">MongoDB</span>
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg" alt="Figma" onerror="this.style.display='none'">Figma</span>
+        <span><img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" alt="AWS" onerror="this.style.display='none'">AWS</span>
+    </div>
+    </div>
+
+    <div class="info-card course-search-section">
+        <div class="course-search-inline">
+            <div class="course-search-label">
+                <h2>Search Programs</h2>
+                <p>Find the exact course you're looking for</p>
+            </div>
+            <div class="course-search-bar">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="courseSearch" placeholder="e.g. Full Stack, AI, Cyber Security...">
+                <button class="course-search-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="search-tags">
+                <span>Popular:</span>
+                <button class="search-tag-btn">AI & ML</button>
+                <button class="search-tag-btn">Full Stack</button>
+                <button class="search-tag-btn">Cyber Security</button>
+                <button class="search-tag-btn">UI/UX</button>
+            </div>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
+    </section>
+
+    <!-- POPULAR COURSES -->
+    <section class="courses" id="courses">
+
+    <h2 class="section-title">Popular Courses</h2>
+    <p class="section-subtitle">Explore in-demand skills and start building your stronger tomorrow.</p>
+
+    <div class="course-container">
+
+    <div class="course-card">
+    <div class="course-card-thumb">🤖</div>
+    <h3>AI & Machine Learning</h3>
+    <div class="course-card-rating"><span class="stars">★★★★★</span><span class="rating-num">(4.8)</span></div>
+    <p>
+        Build smart AI models and future-ready applications.
+    </p>
+    <div class="course-card-info"><span>12 Lessons</span><span>8 Projects</span></div>
+    <a href="courses.html" class="learn-more">Explore →</a>
+      </div>
+
+    <div class="course-card">
+    <div class="course-card-thumb">💻</div>
+    <h3>Full Stack Development</h3>
+    <div class="course-card-rating"><span class="stars">★★★★★</span><span class="rating-num">(4.8)</span></div>
+    <p>
+        Create complete web applications using modern technologies.
+    </p>
+    <div class="course-card-info"><span>15 Lessons</span><span>10 Projects</span></div>
+    <a href="courses.html" class="learn-more">Explore →</a>
+    </div>
+
+    <div class="course-card">
+    <div class="course-card-thumb">🛡️</div>
+    <h3>Cyber Security</h3>
+    <div class="course-card-rating"><span class="stars">★★★★★</span><span class="rating-num">(4.9)</span></div>
+    <p>
+        Protect systems, networks and digital platforms securely.
+    </p>
+    <div class="course-card-info"><span>14 Lessons</span><span>7 Projects</span></div>
+    <a href="courses.html" class="learn-more">Explore →</a>
+    </div>
+
+    <div class="course-card">
+    <div class="course-card-thumb">🎨</div>
+    <h3>UI/UX & Product Design</h3>
+    <div class="course-card-rating"><span class="stars">★★★★★</span><span class="rating-num">(4.9)</span></div>
+    <p>
+        Design beautiful and user-friendly digital experiences.
+    </p>
+    <div class="course-card-info"><span>10 Lessons</span><span>6 Projects</span></div>
+    <a href="courses.html" class="learn-more">Explore →</a>
+    </div>
+
+    <div class="course-card">
+    <div class="course-card-thumb">📊</div>
+    <h3>Data Analytics</h3>
+    <div class="course-card-rating"><span class="stars">★★★★★</span><span class="rating-num">(4.8)</span></div>
+    <p>
+        Turn raw data into insights with real-world case studies.
+    </p>
+    <div class="course-card-info"><span>8 Lessons</span><span>5 Projects</span></div>
+    <a href="courses.html" class="learn-more">Explore →</a>
+    </div>
+
+    </div>
+
+    </section>
+
+    <!-- LEARN BEYOND CLASSROOM + CAREER READY LEARNING (SIDE BY SIDE) -->
+    <section class="pair-row" id="showcase">
+
+        <div class="info-card">
+            <div class="showcase-image">
+                <img src="images/learning.jpg" alt="Learning">
+            </div>
+            <div class="showcase-content">
+                <h2>Learn Beyond the Classroom</h2>
+                <p>
+                    Workshops, project-based learning, and collaborative
+                    activities that turn knowledge into practical skills.
+                </p>
+                <ul class="check-list check-list-grid">
+                    <li>Mini Projects with Source Code</li>
+                    <li>Problem Solving & Challenges</li>
+                    <li>Real-World Project Experience</li>
+                    <li>Build Your Portfolio</li>
+                </ul>
+                <a href="projects.html" class="learn-more">View Practice Projects →</a>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="showcase-image">
+                <img src="images/workshop.jpg" alt="Workshop">
+            </div>
+            <div class="showcase-content">
+                <h2>Career Ready Learning</h2>
+                <p>
+                    Training designed to bridge academic learning and
+                    industry expectations, building real confidence.
+                </p>
+                <ul class="check-list check-list-grid">
+                    <li>Industry-recognized skills</li>
+                    <li>Resume & portfolio building</li>
+                    <li>Interview preparation</li>
+                    <li>Career roadmap & mentorship</li>
+                </ul>
+                <a href="career-guidance.html" class="learn-more">Get Career Guidance →</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- COMBO PACKAGES -->
+    <section class="packages">
+        <h2 class="section-title">Combo Packages</h2>
+        <p class="section-subtitle">Choose the perfect plan and start your journey</p>
+
+        <div class="package-container">
+
+            <div class="package-card">
+                <div class="package-badge">Save 20%</div>
+                <h3>Career Starter Combo</h3>
+                <p class="package-includes">Full Stack Development + UI/UX & Product Design</p>
+                <div class="package-price">
+                    <span class="price-old">₹8,000</span>
+                    <span class="price-new">₹6,400</span>
+                </div>
+                <ul>
+                    <li>2 Full Courses</li>
+                    <li>Combined Certification</li>
+                    <li>Dedicated Mentor</li>
+                </ul>
+                <a href="#" class="cta-btn-primary" onclick="handleComboEnroll('Career Starter Combo'); return false;">Enroll Now</a>
+            </div>
+
+            <div class="package-card featured">
+                <div class="package-badge">Save 30%</div>
+                <h3>Tech Pro Bundle</h3>
+                <p class="package-includes">AI & Machine Learning + Full Stack Development + Cyber Security</p>
+                <div class="package-price">
+                    <span class="price-old">₹10,000</span>
+                    <span class="price-new">₹7,000</span>
+                </div>
+                <ul>
+                    <li>3 Full Courses</li>
+                    <li>Priority Placement Support</li>
+                    <li>1-on-1 Mentorship</li>
+                    <li>Resume + Interview Prep</li>
+                </ul>
+                <a href="#" class="cta-btn-primary" onclick="handleComboEnroll('Tech Pro Bundle'); return false;">Enroll Now</a>
+            </div>
+
+            <div class="package-card">
+                <div class="package-badge">Save 25%</div>
+                <h3>Design + Data Combo</h3>
+                <p class="package-includes">UI/UX & Product Design + Data Analytics</p>
+                <div class="package-price">
+                    <span class="price-old">₹9,000</span>
+                    <span class="price-new">₹6,750</span>
+                </div>
+                <ul>
+                    <li>2 Full Courses</li>
+                    <li>Portfolio Review</li>
+                    <li>Combined Certification</li>
+                </ul>
+                <a href="#" class="cta-btn-primary" onclick="handleComboEnroll('Design + Data Combo'); return false;">Enroll Now</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PATH TO SUCCESS -->
+    <section class="career-roadmap">
+
+    <h2>Your Path to Success</h2>
+
+    <div class="roadmap">
+
+        <div class="roadmap-item">
+            <div class="step-circle">1</div>
+            <h3>Enroll</h3>
+            <p>Choose a program that matches your interests and career goals.</p>
+        </div>
+
+        <div class="roadmap-item">
+            <div class="step-circle">2</div>
+            <h3>Learn</h3>
+            <p>Attend interactive sessions led by experienced trainers.</p>
+        </div>
+
+        <div class="roadmap-item">
+            <div class="step-circle">3</div>
+            <h3>Build</h3>
+            <p>Work on practical projects and strengthen your portfolio.</p>
+        </div>
+
+        <div class="roadmap-item">
+            <div class="step-circle">4</div>
+            <h3>Certify</h3>
+            <p>Earn recognized certificates that validate your skills.</p>
+        </div>
+
+        <div class="roadmap-item">
+            <div class="step-circle">5</div>
+            <h3>Get Hired 🎉</h3>
+            <p>Gain confidence through mentorship, guidance, and industry exposure.</p>
+        </div>
+
+    </div>
+
+    </section>
+
+<section class="testimonials">
+    <h2 class="section-title">Student Success Stories</h2>
+    <p class="testimonial-intro">
+       Real skills, real projects, real success — 
+    see how LearnCraft Hub students achieved 
+    their career goals.
+
+    </p>
+
+    <div class="slider-container">
+        <button class="arrow" id="prev">&#8249;</button>
+
+        <div class="testimonial-slider">
+
+            <div class="testimonial-card">
+                <img src="images/student1.jpg" alt="Arjun Kumar">
+                <h3>Arjun Kumar</h3>
+                <span class="course-tag">Full Stack Development</span>
+                <div class="rating">★★★★★ 5.0 / 5.0</div>
+                <p>LearnCraft Hub provided hands-on project experience and
+                industry-focused training. The mentorship sessions helped me
+                strengthen my technical skills and gain confidence in
+                real-world software development.</p>
+                <ul>
+                    <li>Real-time Projects</li>
+                    <li>Expert Mentorship</li>
+                    <li>Career Guidance</li>
+                    <li>Internship Prep</li>
+                </ul>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="images/student2.jpg" alt="Priya Sharma">
+                <h3>Priya Sharma</h3>
+                <span class="course-tag">UI/UX Design</span>
+                <div class="rating">★★★★★ 5.0 / 5.0</div>
+                <p>The program helped me build a strong portfolio and understand
+                modern design principles. Practical workshops improved my
+                creativity and problem-solving skills significantly.</p>
+                <ul>
+                    <li>Portfolio Development</li>
+                    <li>Design Thinking</li>
+                    <li>Interactive Workshops</li>
+                    <li>Industry Design Tools</li>
+                </ul>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="images/student3.jpg" alt="Rahul Verma">
+                <h3>Rahul Verma</h3>
+                <span class="course-tag">Data Analytics</span>
+                <div class="rating">★★★★★ 5.0 / 5.0</div>
+                <p>Real-world datasets and project-based learning helped me
+                understand analytics concepts effectively and improve my
+                decision-making skills.</p>
+                <ul>
+                    <li>Business Analytics</li>
+                    <li>Dashboard Creation</li>
+                    <li>Case Studies</li>
+                    <li>Interview Preparation</li>
+                </ul>
+            </div>
+
+            <div class="testimonial-card">
+                <img src="images/student4.jpg" alt="Sneha Patel">
+                <h3>Sneha Patel</h3>
+                <span class="course-tag">Cyber Security</span>
+                <div class="rating">★★★★★ 5.0 / 5.0</div>
+                <p>The practical labs and structured curriculum provided a strong
+                foundation in network security and cyber threat management.</p>
+                <ul>
+                    <li>Security Labs</li>
+                    <li>Ethical Hacking Basics</li>
+                    <li>Network Protection</li>
+                    <li>Career Development Support</li>
+                </ul>
+            </div>
+
+        </div><!-- end testimonial-slider -->
+
+        <button class="arrow" id="next">&#8250;</button>
+    </div><!-- end slider-container -->
+
+</section>
+
+<!-- CERTIFICATE + TOP COMPANIES (SIDE BY SIDE) -->
+<section class="pair-row">
+
+    <div class="info-card" id="certificate">
+        <h2 class="section-title-sm">Your Certificate of Completion</h2>
+        <p class="section-subtitle-sm">Preview of the certificate you'll receive after completing any course</p>
+        <div class="certificate-row">
+            <div class="certificate-mockup reveal">
+                <div class="cert-border">
+                    <div class="cert-badge-ribbon">✔ Verified</div>
+                    <div class="cert-seal">🎓</div>
+                    <p class="cert-kicker">CERTIFICATE OF COMPLETION</p>
+                    <h3 class="cert-brand">LearnCraft<span>Hub</span></h3>
+                    <p class="cert-presented">This certificate is proudly presented to</p>
+                    <p class="cert-name">Student Name</p>
+                    <p class="cert-desc">for successfully completing the</p>
+                    <p class="cert-course">Full Stack Development Program</p>
+                    <div class="cert-footer">
+                        <div class="cert-sign">
+                            <span class="cert-line"></span>
+                            <p>Course Director</p>
+                        </div>
+                        <div class="cert-date">
+                            <span class="cert-line"></span>
+                            <p>Date of Issue</p>
+                        </div>
+                    </div>
+                    <div class="cert-id">
+                        <span>Certificate ID</span>
+                        <span>LCH-2026-FSD-00482</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certificate-side">
+                <ul class="check-list">
+                    <li>Industry Recognized</li>
+                    <li>Secure & Verified</li>
+                    <li>Boosts Your Career</li>
+                </ul>
+                <div class="cert-side-buttons">
+                    <a href="#" class="cta-btn-primary" onclick="handleCertDownload(); return false;">Download Sample</a>
+                    <a href="#" class="cert-btn-secondary" onclick="openCertVerifyModal(); return false;">Verify Certificate</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-card companies-compact">
+        <h2 class="section-title-sm">Top Companies Hiring</h2>
+        <p class="section-subtitle-sm">Our curriculum is built around the skills these companies look for
+            <span class="disclaimer-note">(logos shown for identification only)</span>
+        </p>
+        <div class="company-logos">
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Google</span>
+            </div>
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Amazon</span>
+            </div>
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Microsoft</span>
+            </div>
+            <div class="company-card">
+                <img src="https://cdn.simpleicons.org/tcs" alt="TCS" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">TCS</span>
+            </div>
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Infosys</span>
+            </div>
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Accenture</span>
+            </div>
+            <div class="company-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Wipro</span>
+            </div>
+            <div class="company-card">
+                <img src="https://cdn.simpleicons.org/cognizant" alt="Cognizant" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span class="logo-fallback-text">Cognizant</span>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <!-- CTA BANNER (compact) -->
+    <section class="cta-banner">
+        <div class="cta-banner-row">
+            <div class="cta-banner-left">
+                <span class="cta-icon">🎓</span>
+                <div>
+                    <h2>Ready to Start Your Learning Journey?</h2>
+                    <p>Join 10,000+ learners and build a successful tech career.</p>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="#" class="cta-btn-primary" onclick="handleComboEnroll('General Enrollment'); return false;">Enroll Now</a>
+                <a href="courses.html" class="cta-btn-secondary">Browse Courses</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER (compact) -->
+    <section class="newsletter">
+        <div class="newsletter-row">
+            <div class="cta-banner-left">
+                <span class="cta-icon">📧</span>
+                <div>
+                    <h2>Stay Updated!</h2>
+                    <p>Get latest course updates and tips in your inbox.</p>
+                </div>
+            </div>
+            <div class="newsletter-form">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address">
+                <button onclick="handleNewsletterSubscribe()">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-brand">
+           <div class="footer-brand-text">
+            <h3>LearnCraft<span>Hub</span></h3>
+            <p class="tagline">Learning Beyond Limits</p>
+            </div>
+            <p>Empowering students with industry-ready skills, 
+            real projects, and career-focused mentorship 
+            for a better tomorrow.</p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="courses.html">Courses</a>
+            <a href="projects.html">Projects & Practice</a>
+            <a href="career-guidance.html">Career Guidance</a>
+            <a href="faq-contact.html">FAQ & Contact</a>
+        </div>
+
+        <div class="footer-links">
+            <h4>Our Courses</h4>
+            <a href="#">Full Stack Development</a>
+            <a href="#">UI/UX Design</a>
+            <a href="#">Data Analytics</a>
+            <a href="#">Cyber Security</a>
+            <a href="#">AI & Machine Learning</a>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact Us</h4>
+            <p>📧 info@learncrafthub.com</p>
+            <p>📞 +91 88388 56461</p>
+            <p>☎️ 0452-2345 678</p>
+            <p>📍 Madurai, Tamil Nadu</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 LearnCraft Hub. All Rights Reserved. 
+        Made with ❤️ in Madurai</p>
+        <p class="footer-disclaimer">
+        All company, university, and platform logos and names are trademarks of their respective owners.
+        They are used here solely for identification purposes and do not imply any affiliation, partnership, sponsorship, or endorsement by LearnCraft Hub.
+        </p>
+    </div>
+</footer>
+<script src="script.js"></script>
+
+<button class="scroll-top" id="scrollTop">↑</button>
+
+<script>
+    const pageScrollBtn = document.getElementById('scrollTop');
+    if (pageScrollBtn) {
+        window.addEventListener('scroll', () => {
+            pageScrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        });
+        pageScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+</script>
+</body>
+
+</html>

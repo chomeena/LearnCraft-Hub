@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About Us - LearnCraft Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,600&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+            transition: 0.3s;
+            z-index: 999;
+        }
+        .scroll-top:hover {
+            background: #1e3a8a;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body class="about-page">
+
+    <header>
+        <div class="navbar">
+
+            <img src="images/logo.png" alt="Logo" class="logo">
+
+            <nav id="primaryNav">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="projects.html">Projects & Practice</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="faq-contact.html">FAQ & Contact</a>
+            </nav>
+
+            <div class="navbar-search" id="navbarSearch">
+                <button class="navbar-search-toggle" id="navbarSearchToggle" aria-label="Search courses">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div class="navbar-search-panel">
+                    <div class="navbar-search-bar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="navSearchInput" placeholder="Search 40+ courses...">
+                    </div>
+                    <div class="navbar-search-results" id="navSearchResults"></div>
+                </div>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+                <span></span><span></span><span></span>
+            </button>
+
+        </div>
+    </header>
+
+    <!-- SIDE SECTION NAV -->
+    <nav class="side-nav" aria-label="Page sections">
+        <a href="#about-hero" class="side-nav-link active" data-tooltip="About">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 11.5 12 4l9 7.5"></path>
+                <path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"></path>
+            </svg>
+        </a>
+        <a href="#mission-vision" class="side-nav-link" data-tooltip="Mission & Vision">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="10.5" cy="13.5" r="8"></circle>
+                <circle cx="10.5" cy="13.5" r="4.5"></circle>
+                <path d="M21 3 13 11"></path>
+            </svg>
+        </a>
+        <a href="#founder" class="side-nav-link" data-tooltip="Founder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"></circle>
+                <path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path>
+            </svg>
+        </a>
+        <a href="#team" class="side-nav-link" data-tooltip="Team">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="8" r="3.2"></circle>
+                <path d="M2.5 20v-1.2A4 4 0 0 1 6.5 15h5a4 4 0 0 1 4 3.8V20"></path>
+                <path d="M16.5 8.2a3 3 0 1 1 0 5.9"></path>
+                <path d="M18.5 15.3a4 4 0 0 1 3 3.7V20"></path>
+            </svg>
+        </a>
+        <a href="faq-contact.html" class="side-nav-link" data-tooltip="Contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- ABOUT HERO -->
+    <section class="about-hero" id="about-hero">
+
+        <div class="about-hero-text">
+            <p class="about-kicker">About LearnCraft Hub</p>
+            <h1>
+                Empowering Students to<br>
+                Build Real Tech Careers.
+            </h1>
+            <p>
+                LearnCraft Hub is a Madurai-based learning platform built for students and
+                working professionals who want practical, job-ready skills — not just theory.
+                Every course is designed around real projects, real mentors, and real outcomes,
+                so what you learn in class is exactly what you'll be asked to do in your first job.
+            </p>
+            <a href="courses.html" class="btn">Explore Courses</a>
+        </div>
+
+        <div class="about-hero-image">
+            <img src="images/about-team.jpg" alt="LearnCraft Hub Team">
+        </div>
+
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="mission-vision-wrap" id="mission-vision">
+        <p class="mv-badge"><span class="mv-badge-dot"></span>What Drives Us</p>
+        <h2 class="section-title">Mission & Vision</h2>
+        <p class="section-subtitle">
+            Our mission defines why we exist. Our vision defines the future we are building together.
+        </p>
+
+        <div class="mission-vision">
+
+            <div class="mv-card mv-mission">
+                <div class="mv-card-body">
+                    <div class="mv-card-text">
+                        <div class="mv-icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="13.5" r="8"></circle><circle cx="10.5" cy="13.5" r="4.5"></circle><circle cx="10.5" cy="13.5" r="1" fill="#fff" stroke="none"></circle><path d="M21 3 13 11"></path><path d="M21 3l-1 5-5 1 1-5z" fill="#fff" stroke="none"></path></svg>
+                        </div>
+                        <h3>Our Mission</h3>
+                        <p>
+                            To make industry-ready tech education accessible and affordable for every
+                            student, regardless of their background, by combining expert mentorship
+                            with hands-on, project-based learning that mirrors how real teams actually
+                            build software — not how a textbook describes it.
+                        </p>
+                    </div>
+                    <div class="mv-card-illustration mv-illustration-target">
+                        <img src="images/mission-target.png" alt="Dart hitting the center of a target, representing our mission">
+                    </div>
+                </div>
+                <div class="mv-features">
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span>
+                        <span>Affordable Education</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg></span>
+                        <span>Expert Mentorship</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 8 4 12 9 16"></polyline><polyline points="15 8 20 12 15 16"></polyline></svg></span>
+                        <span>Hands-on Learning</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></span>
+                        <span>Real World Projects</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mv-connector">
+                <svg class="mv-connector-lines" viewBox="0 0 130 130" preserveAspectRatio="none">
+                    <defs>
+                        <marker id="mvArrowIndigo" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0,0 L10,5 L0,10 Z" fill="#818cf8"></path>
+                        </marker>
+                        <marker id="mvArrowOrange" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M0,0 L10,5 L0,10 Z" fill="#f97316"></path>
+                        </marker>
+                    </defs>
+                    <path d="M0,20 C30,20 42,50 58,62" fill="none" stroke="#818cf8" stroke-width="3.5" stroke-dasharray="4 7" marker-end="url(#mvArrowIndigo)"></path>
+                    <path d="M0,110 C30,110 42,80 58,68" fill="none" stroke="#818cf8" stroke-width="3.5" stroke-dasharray="4 7" marker-end="url(#mvArrowIndigo)"></path>
+                    <path d="M130,20 C100,20 88,50 72,62" fill="none" stroke="#f97316" stroke-width="3.5" stroke-dasharray="4 7" marker-end="url(#mvArrowOrange)"></path>
+                    <path d="M130,110 C100,110 88,80 72,68" fill="none" stroke="#f97316" stroke-width="3.5" stroke-dasharray="4 7" marker-end="url(#mvArrowOrange)"></path>
+                    <circle class="mv-connector-dot" cx="0" cy="20" r="5.5"></circle>
+                    <circle class="mv-connector-dot" cx="0" cy="110" r="5.5"></circle>
+                    <circle class="mv-connector-dot mv-vision-side" cx="130" cy="20" r="5.5"></circle>
+                    <circle class="mv-connector-dot mv-vision-side" cx="130" cy="110" r="5.5"></circle>
+                </svg>
+                <div class="mv-connector-circle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6.5" r="2.6"></circle><circle cx="5.2" cy="9" r="2.2"></circle><circle cx="18.8" cy="9" r="2.2"></circle><path d="M6.5 21v-1.8a4 4 0 0 1 4-3.9h3a4 4 0 0 1 4 3.9V21"></path><path d="M2.2 21v-1.3a2.8 2.8 0 0 1 2.4-2.75"></path><path d="M21.8 21v-1.3a2.8 2.8 0 0 0-2.4-2.75"></path></svg>
+                </div>
+            </div>
+
+            <div class="mv-card mv-vision">
+                <div class="mv-card-body">
+                    <div class="mv-card-text">
+                        <div class="mv-icon-circle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m10.065 12.493-6.18 1.318a.934.934 0 0 1-1.108-.702l-.537-2.15a1.07 1.07 0 0 1 .691-1.265l13.504-4.44"></path><path d="m13.56 11.747 4.332-.924"></path><path d="m16 21-3.105-6.21"></path><path d="M16.485 5.94a2 2 0 0 1 1.455-2.425l1.09-.272a1 1 0 0 1 1.212.727l1.515 6.06a1 1 0 0 1-.727 1.213l-1.09.272a2 2 0 0 1-2.425-1.455z"></path><path d="m6.158 8.633 1.114 4.456"></path><path d="m8 21 3.105-6.21"></path><circle cx="12" cy="13" r="2"></circle></svg>
+                        </div>
+                        <h3>Our Vision</h3>
+                        <p>
+                            To become the most trusted launchpad for tech careers in Tamil Nadu —
+                            where every learner graduates with the skills, portfolio, and confidence
+                            to succeed in the real world, and where "LearnCraft trained" becomes
+                            shorthand for job-ready talent among hiring teams.
+                        </p>
+                    </div>
+                    <div class="mv-card-illustration mv-illustration-telescope">
+                        <img src="images/vision-telescope.png" alt="Telescope pointed at the sky toward distant mountains, representing our vision">
+                    </div>
+                </div>
+                <div class="mv-features">
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg></span>
+                        <span>Industry Ready Skills</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></span>
+                        <span>Strong Portfolio</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5l-8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+                        <span>Confident Learners</span>
+                    </div>
+                    <div class="mv-feature">
+                        <span class="mv-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"></polyline><polyline points="15 6 21 6 21 12"></polyline></svg></span>
+                        <span>Successful Careers</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mv-stats">
+            <div class="mv-stat">
+                <span class="mv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="16" y1="3" x2="16" y2="7"></line></svg></span>
+                <span class="mv-stat-num">5+</span>
+                <span class="mv-stat-label">Years Running</span>
+            </div>
+            <div class="mv-stat">
+                <span class="mv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"></path><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"></path></svg></span>
+                <span class="mv-stat-num">10,000+</span>
+                <span class="mv-stat-label">Students Trained</span>
+            </div>
+            <div class="mv-stat">
+                <span class="mv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M21 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+                <span class="mv-stat-num">50+</span>
+                <span class="mv-stat-label">Expert Mentors</span>
+            </div>
+            <div class="mv-stat">
+                <span class="mv-stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M9 14 7 22l5-3 5 3-2-8"></path></svg></span>
+                <span class="mv-stat-num">95%</span>
+                <span class="mv-stat-label">Placement Success</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE IDEA BEHIND LEARNCRAFT HUB -->
+    <section class="idea-section">
+
+        <div class="idea-image">
+            <img src="images/idea-classroom.jpg" alt="LearnCraft Hub classroom session">
+        </div>
+
+        <div class="idea-content">
+            <p class="about-kicker">The Idea Behind It</p>
+            <h2>Why We Started LearnCraft Hub</h2>
+            <p>
+                It began with a simple observation — engineering graduates in Madurai were
+                leaving college with strong theory but no real exposure to how the tech
+                industry actually works. Resumes looked similar, projects were copied from
+                tutorials, and interviews kept ending the same way: a confident start,
+                followed by silence the moment a question went beyond what was memorized.
+            </p>
+            <p>
+                LearnCraft Hub was built to close that exact gap. Instead of long lecture
+                videos, every course is structured around a real client-style project, a
+                small batch size, and a mentor who has actually shipped production software.
+                The goal was never to hand out certificates — it was to make sure a student
+                who finishes a course can confidently sit in a technical interview and
+                explain what they built and why.
+            </p>
+            <p>
+                That philosophy is also why we kept things small in the early years. Growth
+                meant nothing if it came at the cost of mentor attention or project quality.
+                Every new course, every new mentor, and every new city we expand into still
+                gets measured against one question: will this genuinely make a student more
+                hireable? If the answer isn't a clear yes, it doesn't make it into the
+                curriculum.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- OUR PROGRAM APPROACH -->
+    <section class="program-approach">
+
+        <h2 class="section-title">How Our Program Works</h2>
+        <p class="section-subtitle">A learning model built around accountability, not attendance</p>
+
+        <div class="approach-grid">
+
+            <div class="approach-item">
+                <span class="approach-num">01</span>
+                <h3>Small Cohorts</h3>
+                <p>Every batch is capped to a small group so mentors can actually track individual progress.</p>
+            </div>
+
+            <div class="approach-item">
+                <span class="approach-num">02</span>
+                <h3>Live Project Reviews</h3>
+                <p>Weekly 1-on-1 code/design reviews with a mentor, not pre-recorded feedback.</p>
+            </div>
+
+            <div class="approach-item">
+                <span class="approach-num">03</span>
+                <h3>Client-Style Briefs</h3>
+                <p>Projects are scoped like real client work, with requirements that change mid-way — just like a real job.</p>
+            </div>
+
+            <div class="approach-item">
+                <span class="approach-num">04</span>
+                <h3>Lifetime Resource Access</h3>
+                <p>Course materials, recordings, and mentor Q&A stay accessible even after you complete the program.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- OUR JOURNEY / TIMELINE -->
+    <section class="our-journey">
+
+        <h2 class="section-title">Our Journey</h2>
+        <p class="section-subtitle">From a small training room to a 10,000+ student community</p>
+
+        <div class="timeline timeline-horizontal">
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2021</span>
+                    <h3>LearnCraft Hub Founded</h3>
+                    <p>Started in Madurai with a single Full Stack Development batch of 15 students.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2022</span>
+                    <h3>Expanded Course Catalog</h3>
+                    <p>Added AI & Machine Learning, Cyber Security, and UI/UX programs based on student demand.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2024</span>
+                    <h3>Placement Program Launched</h3>
+                    <p>Built a dedicated placement support team, partnering with hiring companies for student referrals.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2026</span>
+                    <h3>10,000+ Students Strong</h3>
+                    <p>Crossed 10,000 enrollments with 50+ courses and a growing alumni network across India.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOUNDER SPOTLIGHT -->
+    <section class="founder-section" id="founder">
+
+        <div class="founder-image">
+            <img src="https://images.unsplash.com/photo-1742981365880-698cfb84492d?auto=format&fit=crop&w=900&q=80" alt="Karthik Subramaniam, Founder of LearnCraft Hub">
+        </div>
+
+        <div class="founder-content">
+            <p class="about-kicker">Meet the Founder</p>
+            <h2>Karthik Subramaniam</h2>
+            <p class="founder-title">Founder & Lead Trainer, LearnCraft Hub</p>
+            <p class="founder-quote">
+                "I didn't want to build another course platform. I wanted to build the
+                place I wish existed when I was a confused engineering graduate trying to
+                figure out how the actual tech industry worked."
+            </p>
+            <p class="founder-bio">
+                Before starting LearnCraft Hub in 2021, Karthik spent over a decade as a
+                software architect, building systems for fintech and e-commerce companies.
+                He started training a small batch of students through what began as a side
+                project — today that batch has grown into a community of 10,000+ learners.
+                He still personally reviews capstone projects for every Full Stack and AI
+                batch, because mentoring students is the part of the job he never wanted
+                to hand off.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- MEET THE TEAM -->
+    <section class="team-section" id="team">
+
+        <h2 class="section-title">The Team Behind Your Courses</h2>
+        <p class="section-subtitle">The mentors who'll actually review your projects and answer your doubts</p>
+
+        <div class="team-container">
+
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1770627016447-cb9d29ed0398?auto=format&fit=crop&w=500&q=80" alt="Divya Raghunathan">
+                <div class="team-card-text">
+                    <h3>Divya Raghunathan</h3>
+                    <span class="team-role">Head of Design Programs</span>
+                    <p>Senior product designer with experience across fintech and edtech.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1480429370139-e0132c086e2a?auto=format&fit=crop&w=500&q=80" alt="Manoj Pillai">
+                <div class="team-card-text">
+                    <h3>Manoj Pillai</h3>
+                    <span class="team-role">Cyber Security Lead</span>
+                    <p>Certified ethical hacker and security consultant for enterprise clients.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1770627000564-3feb36aecbcd?auto=format&fit=crop&w=500&q=80" alt="Anitha Selvam">
+                <div class="team-card-text">
+                    <h3>Anitha Selvam</h3>
+                    <span class="team-role">Placement & Careers Lead</span>
+                    <p>Helps students with resumes, mock interviews, and hiring partnerships.</p>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <img src="https://images.unsplash.com/photo-1771244688590-1e481dba1b5a?auto=format&fit=crop&w=500&q=80" alt="Rahul Krishnan">
+                <div class="team-card-text">
+                    <h3>Rahul Krishnan</h3>
+                    <span class="team-role">AI & Data Programs Lead</span>
+                    <p>Former data engineer who builds the AI/ML curriculum around real datasets.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <div class="cta-content">
+            <h2>Ready to Start Your Tech Journey?</h2>
+            <p>Join 10,000+ students already learning at LearnCraft Hub</p>
+            <div class="cta-buttons">
+                <a href="courses.html" class="cta-btn-primary">Browse Courses</a>
+                <a href="faq-contact.html" class="cta-btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-brand-text">
+                    <h3>LearnCraft<span>Hub</span></h3>
+                    <p class="tagline">Learning Beyond Limits</p>
+                </div>
+                <p>Empowering students with industry-ready skills,
+                    real projects, and career-focused mentorship
+                    for a better tomorrow.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="projects.html">Projects & Practice</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="faq-contact.html">FAQ & Contact</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Our Courses</h4>
+                <a href="#">Full Stack Development</a>
+                <a href="#">UI/UX Design</a>
+                <a href="#">Data Analytics</a>
+                <a href="#">Cyber Security</a>
+                <a href="#">AI & Machine Learning</a>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>📧 info@learncrafthub.com</p>
+                <p>📞 +91 88388 56461</p>
+                <p>☎️ 0452-2345 678</p>
+                <p>📍 Madurai, Tamil Nadu</p>
+                <div class="social-links">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 LearnCraft Hub. All Rights Reserved.
+                Made with ❤️ in Madurai</p>
+            <p class="footer-disclaimer">
+                All company, university, and platform logos and names are trademarks of their respective owners.
+                They are used here solely for identification purposes and do not imply any affiliation, partnership, sponsorship, or endorsement by LearnCraft Hub.
+            </p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        const pageScrollBtn = document.getElementById('scrollTop');
+        if (pageScrollBtn) {
+            window.addEventListener('scroll', () => {
+                pageScrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+            });
+            pageScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+    </script>
+</body>
+
+</html>

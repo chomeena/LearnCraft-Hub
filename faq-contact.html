@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Contact — LearnCraft Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* ── PAGE HERO ── */
+        .page-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+            padding: 72px 60px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .page-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #93c5fd;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+        .page-hero h1 {
+            color: #ffffff;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0 0 16px;
+            line-height: 1.2;
+        }
+        .page-hero h1 span { color: #60a5fa; }
+        .page-hero p {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            max-width: 540px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ── LAYOUT ── */
+        .faq-contact-layout {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 60px 40px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* ── SECTION LABELS ── */
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 5px 14px;
+            border-radius: 999px;
+            border: 1px solid #bfdbfe;
+            margin-bottom: 14px;
+        }
+        .section-heading {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 8px;
+            line-height: 1.25;
+        }
+        .section-sub {
+            color: #64748b;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            margin: 0 0 32px;
+        }
+
+        /* ── FAQ ACCORDION ── */
+        .faq-list { display: grid; gap: 12px; }
+
+        .faq-item {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .faq-item:hover { border-color: #bfdbfe; }
+        .faq-item.open {
+            border-color: #2563eb;
+            box-shadow: 0 4px 20px rgba(37,99,235,0.1);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+        }
+        .faq-question span:first-child {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .faq-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #eff6ff;
+            color: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 400;
+            flex-shrink: 0;
+            transition: background 0.2s, transform 0.3s;
+            line-height: 1;
+        }
+        .faq-item.open .faq-icon {
+            background: #2563eb;
+            color: #fff;
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.3s ease;
+        }
+        /* max-height for open answers is set dynamically in JS (answer.scrollHeight)
+           so longer answers are never clipped */
+        .faq-answer p {
+            margin: 0;
+            padding: 0 20px 18px;
+            font-size: 0.88rem;
+            color: #475569;
+            line-height: 1.7;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 14px;
+        }
+
+        .faq-showmore-btn {
+            width: 100%;
+            margin-top: 14px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #eff6ff;
+            border: 1.5px dashed #93c5fd;
+            border-radius: 12px;
+            color: #1d4ed8;
+            font-size: 0.88rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .faq-showmore-btn:hover { background: #dbeafe; border-color: #60a5fa; }
+        .faq-showmore-btn.is-open svg { transform: rotate(180deg); }
+        .faq-showmore-btn svg { transition: transform 0.25s ease; }
+        .faq-showmore-btn[hidden] { display: none; }
+        .faq-item.faq-hidden-more { display: none !important; }
+
+        /* ── CONTACT SIDE ── */
+        .contact-info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .contact-info-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 18px 16px;
+            transition: 0.2s ease;
+        }
+        .contact-info-card:hover {
+            border-color: #2563eb;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+            transform: translateY(-2px);
+        }
+        .contact-info-card .ci-icon {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .contact-info-card .ci-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .contact-info-card .ci-value {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+        .contact-info-card a.ci-value {
+            text-decoration: none;
+            color: #2563eb;
+        }
+        .contact-info-card a.ci-value:hover { text-decoration: underline; }
+
+        /* ── CONTACT FORM ── */
+        .contact-form-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 4px 24px rgba(15,23,42,0.05);
+        }
+        .contact-form-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 4px;
+        }
+        .contact-form-card p {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin: 0 0 22px;
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+        .form-group label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #374151;
+            letter-spacing: 0.02em;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 11px 14px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            color: #0f172a;
+            background: #f8fafc;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+
+        .form-submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: #ffffff;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            transition: 0.2s ease;
+            margin-top: 4px;
+        }
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+        }
+
+        /* ── SOCIAL STRIP ── */
+        .social-strip {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1.5px solid #e2e8f0;
+            color: #374151;
+            background: #ffffff;
+            transition: 0.2s ease;
+        }
+        .social-btn:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+
+        /* ── SUCCESS MESSAGE ── */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 28px 20px;
+        }
+        .form-success .success-icon {
+            width: 56px; height: 56px;
+            background: #f0fdf4;
+            border: 2px solid #bbf7d0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin: 0 auto 14px;
+        }
+        .form-success h4 { color: #0f172a; margin: 0 0 6px; font-size: 1rem; }
+        .form-success p { color: #64748b; font-size: 0.85rem; margin: 0; }
+
+        /* ── DIVIDER ── */
+        .page-divider {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        .page-divider hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 0;
+        }
+
+        /* ── BOTTOM CTA ── */
+        .bottom-cta {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            text-align: center;
+            padding: 56px 40px;
+        }
+        .bottom-cta h2 { color: #ffffff; font-size: 1.75rem; margin: 0 0 10px; }
+        .bottom-cta p { color: #94a3b8; font-size: 0.95rem; margin: 0 0 28px; }
+        .bottom-cta .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .bottom-cta .cta-btn-primary {
+            background: #2563eb;
+            color: #fff;
+            padding: 13px 32px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+        .bottom-cta .cta-btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+        .bottom-cta .cta-btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            padding: 13px 32px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+        .bottom-cta .cta-btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+        /* ── MOBILE NAV TOGGLE ── */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #fff;
+            margin: 0 auto;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── FAQ TOOLBAR: search + category tabs ── */
+        .faq-toolbar { margin-bottom: 20px; }
+        .faq-search {
+            position: relative;
+            margin-bottom: 14px;
+        }
+        .faq-search input {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 11px 14px 11px 38px;
+            font-size: 0.88rem;
+            font-family: inherit;
+            color: #0f172a;
+            background: #f8fafc;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .faq-search input:focus { border-color: #2563eb; background: #fff; }
+        .faq-search svg {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 15px;
+            height: 15px;
+            color: #94a3b8;
+        }
+        .faq-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .faq-tab {
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            font-family: inherit;
+        }
+        .faq-tab:hover { border-color: #bfdbfe; color: #2563eb; }
+        .faq-tab.active { background: #2563eb; border-color: #2563eb; color: #fff; }
+        .faq-empty-state {
+            display: none;
+            text-align: center;
+            padding: 32px 16px;
+            color: #64748b;
+            font-size: 0.88rem;
+            background: #f8fafc;
+            border: 1.5px dashed #e2e8f0;
+            border-radius: 14px;
+        }
+        .faq-empty-state strong { color: #0f172a; display: block; margin-bottom: 4px; font-size: 0.95rem; }
+
+        /* ── MAP CARD ── */
+        .map-card {
+            background: #fff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+        .map-card iframe {
+            width: 100%;
+            height: 160px;
+            border: 0;
+            display: block;
+        }
+        .map-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 16px;
+        }
+        .map-card-footer span { font-size: 0.8rem; color: #475569; font-weight: 600; }
+        .map-card-footer a {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .map-card-footer a:hover { text-decoration: underline; }
+
+        /* ── FORM FIELD ERRORS ── */
+        .field-error {
+            color: #dc2626;
+            font-size: 0.74rem;
+            font-weight: 600;
+            min-height: 0;
+            display: none;
+        }
+        .form-group.has-error input,
+        .form-group.has-error select,
+        .form-group.has-error textarea {
+            border-color: #dc2626;
+            background: #fef2f2;
+        }
+        .form-group.has-error .field-error { display: block; }
+        .form-group label .req { color: #dc2626; }
+
+        /* ── NAV SOCIAL ICONS ── */
+        .nav-social-icons {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-left: 4px;
+        }
+        .nav-social-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.75);
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .nav-social-btn:hover { transform: translateY(-2px); color: #fff; }
+        .nav-social-linkedin:hover { background: #0077b5; border-color: #0077b5; }
+        .nav-social-instagram:hover { background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af); border-color: #dd2a7b; }
+        .nav-social-youtube:hover { background: #ff0000; border-color: #ff0000; }
+        .nav-social-whatsapp:hover { background: #25d366; border-color: #25d366; }
+
+        /* ── FAQ CATEGORY COLOR SHADING ── */
+        .faq-item[data-cat="general"]  { border-left: 4px solid #8b5cf6; }
+        .faq-item[data-cat="courses"]  { border-left: 4px solid #2563eb; }
+        .faq-item[data-cat="fees"]     { border-left: 4px solid #16a34a; }
+        .faq-item[data-cat="careers"]  { border-left: 4px solid #ea580c; }
+
+        .faq-item[data-cat="general"]  .faq-question span:first-child { color: #1e0a3c; }
+        .faq-item[data-cat="courses"]  .faq-question span:first-child { color: #0f172a; }
+        .faq-item[data-cat="fees"]     .faq-question span:first-child { color: #052e16; }
+        .faq-item[data-cat="careers"]  .faq-question span:first-child { color: #431407; }
+
+        .faq-item[data-cat="general"]  { background: #faf5ff; }
+        .faq-item[data-cat="courses"]  { background: #eff6ff; }
+        .faq-item[data-cat="fees"]     { background: #f0fdf4; }
+        .faq-item[data-cat="careers"]  { background: #fff7ed; }
+
+        .faq-item[data-cat="general"].open  { border-color: #7c3aed; box-shadow: 0 4px 20px rgba(124,58,237,0.12); }
+        .faq-item[data-cat="courses"].open  { border-color: #2563eb; box-shadow: 0 4px 20px rgba(37,99,235,0.12); }
+        .faq-item[data-cat="fees"].open     { border-color: #16a34a; box-shadow: 0 4px 20px rgba(22,163,74,0.12); }
+        .faq-item[data-cat="careers"].open  { border-color: #ea580c; box-shadow: 0 4px 20px rgba(234,88,12,0.12); }
+
+        .faq-item[data-cat="general"] .faq-icon { background: #ede9fe; color: #7c3aed; }
+        .faq-item[data-cat="courses"] .faq-icon { background: #dbeafe; color: #2563eb; }
+        .faq-item[data-cat="fees"]    .faq-icon { background: #dcfce7; color: #16a34a; }
+        .faq-item[data-cat="careers"] .faq-icon { background: #ffedd5; color: #ea580c; }
+
+        .faq-item[data-cat="general"].open .faq-icon { background: #7c3aed; color: #fff; }
+        .faq-item[data-cat="courses"].open .faq-icon { background: #2563eb; color: #fff; }
+        .faq-item[data-cat="fees"].open    .faq-icon { background: #16a34a; color: #fff; }
+        .faq-item[data-cat="careers"].open .faq-icon { background: #ea580c; color: #fff; }
+
+        /* ── OFFICE HOURS ALIGNMENT FIX ── */
+        .office-hours-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+            border: 1.5px solid #bfdbfe;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .office-hours-card h4 {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #1e3a8a;
+            margin: 0 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .oh-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            align-items: center;
+            gap: 12px;
+            padding: 7px 0;
+            border-bottom: 1px solid #dbeafe;
+            font-size: 0.83rem;
+        }
+        .oh-row:last-child { border-bottom: none; }
+        .oh-day { color: #475569; font-weight: 600; }
+        .oh-time { color: #1d4ed8; font-weight: 700; min-width: 160px; text-align: right; }
+        .oh-badge {
+            background: #dcfce7;
+            color: #166534;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        /* ── SOCIAL CONNECT CARD ── */
+        .social-connect-card {
+            background: #ffffff;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+        }
+        .social-connect-card h4 {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .social-connect-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .sc-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: #fff;
+        }
+        .sc-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+        .sc-btn-linkedin { background: linear-gradient(135deg, #0077b5, #005885); }
+        .sc-btn-instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
+        .sc-btn-youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
+        .sc-btn-whatsapp { background: linear-gradient(135deg, #25d366, #128c4e); }
+        .sc-btn svg { flex-shrink: 0; }
+        .sc-btn-text { display: flex; flex-direction: column; line-height: 1.2; }
+        .sc-btn-label { font-size: 0.78rem; opacity: 0.85; font-weight: 500; }
+
+        /* ── QUICK CONTACT STRIP ── */
+        .quick-contact-strip {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .qc-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .qc-btn-whatsapp {
+            background: #25d366;
+            color: #fff;
+        }
+        .qc-btn-whatsapp:hover { background: #128c4e; transform: translateY(-2px); }
+        .qc-btn-email {
+            background: #eff6ff;
+            color: #1d4ed8;
+            border: 1.5px solid #bfdbfe;
+        }
+        .qc-btn-email:hover { background: #dbeafe; transform: translateY(-2px); }
+
+        @media (max-width: 880px) {
+            .nav-social-icons { display: none; }
+        }
+        @media (max-width: 560px) {
+            .social-connect-grid { grid-template-columns: 1fr; }
+            .quick-contact-strip { flex-direction: column; }
+        }
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .faq-contact-layout { grid-template-columns: 1fr; gap: 48px; padding: 48px 24px 64px; }
+            .page-hero { padding: 52px 24px 44px; }
+            .page-hero h1 { font-size: 2rem; }
+            .contact-info-cards { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 880px) {
+            .navbar { flex-wrap: wrap; }
+            .navbar-search { order: 1; }
+            .nav-toggle { display: flex; order: 2; }
+            nav#primaryNav {
+                display: none;
+                flex-basis: 100%;
+                order: 3;
+                flex-direction: column;
+                align-items: stretch;
+                background: rgba(255,255,255,0.06);
+                border: 1px solid rgba(255,255,255,0.12);
+                border-radius: 12px;
+                margin-top: 14px;
+                padding: 6px;
+            }
+            nav#primaryNav.open { display: flex; }
+            nav#primaryNav a {
+                margin: 0;
+                padding: 13px 14px;
+                border-radius: 8px;
+            }
+            nav#primaryNav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+            nav#primaryNav a.active {
+                color: #93c5fd;
+                background: rgba(255,255,255,0.08);
+                border-bottom: none;
+            }
+            .logo { width: 170px; }
+        }
+        @media (max-width: 560px) {
+            .form-row { grid-template-columns: 1fr; }
+            .contact-info-cards { grid-template-columns: 1fr; }
+            .contact-form-card { padding: 22px 18px; }
+            .social-strip { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="navbar">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <nav id="primaryNav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="projects.html">Projects & Practice</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="faq-contact.html" class="active">FAQ & Contact</a>
+            </nav>
+            <div class="navbar-search" id="navbarSearch">
+                <button class="navbar-search-toggle" id="navbarSearchToggle" aria-label="Search courses">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <div class="navbar-search-panel">
+                    <div class="navbar-search-bar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="navSearchInput" placeholder="Search 40+ courses...">
+                    </div>
+                    <div class="navbar-search-results" id="navSearchResults"></div>
+                </div>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primaryNav">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-badge">Support Center</div>
+        <h1>FAQ & <span>Contact Us</span></h1>
+        <p>Have questions? We've got answers. Can't find what you're looking for? Reach out — our team typically responds within 24 hours.</p>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="faq-contact-layout">
+
+        <!-- ── LEFT: FAQ ── -->
+        <div>
+            <div class="section-label">❓ Common Questions</div>
+            <h2 class="section-heading">Frequently Asked<br>Questions</h2>
+            <p class="section-sub">Everything you need to know before you enroll. Still unsure? Send us a message.</p>
+
+            <div class="faq-toolbar">
+                <div class="faq-search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="faqSearchInput" placeholder="Search questions, e.g. 'fees', 'certificate'...">
+                </div>
+                <div class="faq-tabs" id="faqTabs">
+                    <button class="faq-tab active" data-filter="all">All</button>
+                    <button class="faq-tab" data-filter="general">General</button>
+                    <button class="faq-tab" data-filter="courses">Courses & Classes</button>
+                    <button class="faq-tab" data-filter="fees">Fees & Admissions</button>
+                    <button class="faq-tab" data-filter="careers">Careers & Placement</button>
+                </div>
+            </div>
+
+            <div class="faq-list" id="faqList">
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-1">
+                        <span>Who can join LearnCraft Hub?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-1">
+                        <p>Our programs are open to everyone — school leavers, college students, fresh graduates, and working professionals looking to upskill or pivot into tech. No prior experience is required for most courses.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-2">
+                        <span>Are industry-recognised certificates provided?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-2">
+                        <p>Yes. Upon successful completion of any course, you receive a digitally verifiable, industry-recognised certificate that you can share directly on LinkedIn or include in your résumé.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="careers">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-3">
+                        <span>What does placement support include?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-3">
+                        <p>Our dedicated placement team assists with résumé building, LinkedIn profile optimisation, mock interviews, and direct job referrals to our hiring partners — all at no additional cost to enrolled students.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-4">
+                        <span>Are classes conducted online or in person?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-4">
+                        <p>Both modes are available. You can attend live online sessions from anywhere in India, or visit our physical learning centre in Madurai for in-person workshops and hands-on labs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-5">
+                        <span>How long does a course take to complete?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-5">
+                        <p>Program duration varies from 4 weeks (short skill boosters) to 6 months (comprehensive full-stack or AI programs). Exact timelines are listed on each course's detail page.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-6">
+                        <span>What are the fee and payment options?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-6">
+                        <p>We offer flexible instalment plans and need-based scholarships for eligible students. Contact our admissions team for a personalised fee breakdown — we'll find an option that works for you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-7">
+                        <span>Can I switch courses after enrolment?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-7">
+                        <p>Yes, course transfers are allowed within the first two weeks of enrolment, subject to seat availability. Speak to your assigned academic advisor to initiate a transfer request.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-8">
+                        <span>Is there access to recorded sessions?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-8">
+                        <p>All live sessions are recorded and made available on the student portal within 24 hours, so you can review lessons at your own pace or catch up if you miss a class.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-9">
+                        <span>What if I'm not happy after the first few classes?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-9">
+                        <p>You can opt out within the first week of any course for a full refund of fees paid, no questions asked. After that, our academic advisors will work with you to resolve any concerns before you decide.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="careers">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-10">
+                        <span>Do you offer internships alongside placement support?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-10">
+                        <p>Yes. Several of our hiring partners offer paid internships to high-performing students, which often convert into full-time offers. Your placement advisor will flag relevant openings as they open up.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-11">
+                        <span>What programming languages will I learn?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-11">
+                        <p>Depending on your course track: Full Stack covers HTML, CSS, JavaScript, React, Node.js & SQL. Data Analytics focuses on Python, Pandas, and Power BI. AI & ML covers Python, TensorFlow, and Scikit-learn. UI/UX uses Figma alongside design principles. Cybersecurity covers networking, Linux, and ethical hacking tools.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="courses">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-12">
+                        <span>Do I need a laptop or specific hardware?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-12">
+                        <p>A laptop with at least 8 GB RAM and a modern OS (Windows 10+, macOS 11+, or Ubuntu) is recommended. All software used is free or open-source. Students attending in-person sessions can also use our lab computers during class hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="fees">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-13">
+                        <span>Are scholarships available for deserving students?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-13">
+                        <p>Yes! We offer merit-based and need-based scholarships covering up to 50% of course fees. First-generation learners and students from rural backgrounds receive priority consideration. Contact our admissions team with relevant documents to apply.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="careers">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-14">
+                        <span>How many students have been placed so far?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-14">
+                        <p>Over 2,500 students have been placed in roles across companies like TCS, Infosys, Wipro, Zoho, and various funded startups. Our placement rate for students who complete all modules and career-prep sessions stands at 87%.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-cat="general">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-ans-15">
+                        <span>Is there a student community or peer network?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-ans-15">
+                        <p>Absolutely. Every enrolled student gets access to our exclusive WhatsApp groups, Discord server, and monthly offline meetups in Madurai. Alumni also stay connected and frequently refer juniors for openings at their companies.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="faq-empty-state" id="faqEmptyState">
+                <strong>No matching questions</strong>
+                Try a different search term, or <a href="#contact-form-card" onclick="document.getElementById('faqSearchInput').value=''; document.querySelectorAll('.faq-tab')[0].click();">clear your filters</a>.
+            </div>
+
+            <button class="faq-showmore-btn" id="faqShowMoreBtn" type="button">
+                <span id="faqShowMoreLabel">Show 5 more questions</span>
+                <svg id="faqShowMoreChevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+        </div>
+
+        <!-- ── RIGHT: CONTACT ── -->
+        <div>
+            <div class="section-label">📬 Get in Touch</div>
+            <h2 class="section-heading">We're Here<br>to Help You</h2>
+            <p class="section-sub">Our admissions and support team is available Monday – Saturday, 9 AM to 7 PM IST.</p>
+
+            <!-- Contact Info Cards -->
+            <div class="contact-info-cards">
+                <div class="contact-info-card">
+                    <span class="ci-icon">📧</span>
+                    <span class="ci-label">Email Us</span>
+                    <a href="mailto:info@learncrafthub.com" class="ci-value">info@learncrafthub.com</a>
+                </div>
+                <div class="contact-info-card">
+                    <span class="ci-icon">📞</span>
+                    <span class="ci-label">Call / WhatsApp</span>
+                    <a href="tel:+918838856461" class="ci-value">+91 88388 56461</a>
+                </div>
+                <div class="contact-info-card">
+                    <span class="ci-icon">☎️</span>
+                    <span class="ci-label">Landline</span>
+                    <span class="ci-value">0452-2345 678</span>
+                </div>
+                <div class="contact-info-card">
+                    <span class="ci-icon">📍</span>
+                    <span class="ci-label">Our Location</span>
+                    <span class="ci-value">Madurai, Tamil Nadu</span>
+                </div>
+            </div>
+
+            <!-- Map -->
+            <div class="map-card">
+                <iframe src="https://maps.google.com/maps?q=Madurai,Tamil%20Nadu&z=12&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="LearnCraft Hub location in Madurai"></iframe>
+                <div class="map-card-footer">
+                    <span>📍 Madurai, Tamil Nadu</span>
+                    <a href="https://maps.google.com/maps?q=Madurai,Tamil+Nadu" target="_blank" rel="noopener">Get directions →</a>
+                </div>
+            </div>
+
+            <!-- Office Hours -->
+            <div class="office-hours-card">
+                <h4>🕐 Office Hours</h4>
+                <div class="oh-row">
+                    <span class="oh-day">Monday – Friday</span>
+                    <span class="oh-time">9:00 AM – 7:00 PM</span>
+                    <span class="oh-badge">Open</span>
+                </div>
+                <div class="oh-row">
+                    <span class="oh-day">Saturday</span>
+                    <span class="oh-time">10:00 AM – 5:00 PM</span>
+                    <span class="oh-badge">Open</span>
+                </div>
+                <div class="oh-row">
+                    <span class="oh-day">Sunday</span>
+                    <span class="oh-time" style="color:#94a3b8;">Closed</span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-card" id="contact-form-card">
+                <h3>Send Us a Message</h3>
+                <p>Fill in the form below and we'll get back to you within one business day.</p>
+
+                <div id="contactFormWrap">
+                    <div class="form-row">
+                        <div class="form-group" id="fg-name">
+                            <label for="cf-name">Full Name <span class="req">*</span></label>
+                            <input type="text" id="cf-name" placeholder="e.g. Arjun Krishnan" autocomplete="name">
+                            <span class="field-error">Please enter your full name.</span>
+                        </div>
+                        <div class="form-group" id="fg-email">
+                            <label for="cf-email">Email Address <span class="req">*</span></label>
+                            <input type="email" id="cf-email" placeholder="you@example.com" autocomplete="email">
+                            <span class="field-error">Please enter a valid email address.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" id="fg-phone">
+                            <label for="cf-phone">Phone Number <span class="req">*</span></label>
+                            <input type="tel" id="cf-phone" placeholder="+91 XXXXX XXXXX">
+                            <span class="field-error">Please enter a valid 10-digit phone number.</span>
+                        </div>
+                        <div class="form-group" id="fg-subject">
+                            <label for="cf-subject">Subject <span class="req">*</span></label>
+                            <select id="cf-subject">
+                                <option value="" disabled selected>Select a topic</option>
+                                <option>Course Enquiry</option>
+                                <option>Admissions & Fees</option>
+                                <option>Placement Support</option>
+                                <option>Technical Support</option>
+                                <option>Scholarships</option>
+                                <option>Other</option>
+                            </select>
+                            <span class="field-error">Please select a topic.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="fg-message">
+                        <label for="cf-message">Your Message <span class="req">*</span></label>
+                        <textarea id="cf-message" placeholder="Tell us what you'd like to know or discuss…"></textarea>
+                        <span class="field-error">Please enter a message (at least 10 characters).</span>
+                    </div>
+
+                    <button class="form-submit-btn" id="cfSubmitBtn" onclick="handleFormSubmit()">
+                        Send Message &nbsp;→
+                    </button>
+                </div>
+
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon">✅</div>
+                    <h4>Message Received!</h4>
+                    <p>Thank you for reaching out. Our team will respond to you within one business day.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <section class="bottom-cta">
+        <h2>Ready to Begin Your Tech Journey?</h2>
+        <p>Join 10,000+ students already building future-ready careers at LearnCraft Hub.</p>
+        <div class="cta-buttons">
+            <a href="courses.html" class="cta-btn-primary">Explore Courses</a>
+            <a href="index.html" class="cta-btn-secondary">Back to Home</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-brand-text">
+                    <h3>LearnCraft<span>Hub</span></h3>
+                    <p class="tagline">Learning Beyond Limits</p>
+                </div>
+                <p>Empowering students with industry-ready skills, real projects, and career-focused mentorship for a better tomorrow.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="courses.html">Courses</a>
+                <a href="projects.html">Projects & Practice</a>
+                <a href="career-guidance.html">Career Guidance</a>
+                <a href="faq-contact.html">FAQ & Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Our Courses</h4>
+                <a href="#">Full Stack Development</a>
+                <a href="#">UI/UX Design</a>
+                <a href="#">Data Analytics</a>
+                <a href="#">Cyber Security</a>
+                <a href="#">AI & Machine Learning</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact Us</h4>
+                <p>📧 info@learncrafthub.com</p>
+                <p>📞 +91 88388 56461</p>
+                <p>☎️ 0452-2345 678</p>
+                <p>📍 Madurai, Tamil Nadu</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 LearnCraft Hub. All Rights Reserved. Made with ❤️ in Madurai</p>
+            <p class="footer-disclaimer">All company, university, and platform logos and names are trademarks of their respective owners. They are used here solely for identification purposes and do not imply any affiliation, partnership, sponsorship, or endorsement by LearnCraft Hub.</p>
+        </div>
+    </footer>
+
+    <button class="scroll-top" id="scrollTop">↑</button>
+    <script src="script.js"></script>
+    <script>
+        // ── MOBILE NAV TOGGLE ──
+        (function () {
+            const navToggle = document.getElementById('navToggle');
+            const primaryNav = document.getElementById('primaryNav');
+            if (!navToggle || !primaryNav) return;
+
+            function setNavOpen(open) {
+                primaryNav.classList.toggle('open', open);
+                navToggle.classList.toggle('open', open);
+                navToggle.setAttribute('aria-expanded', String(open));
+            }
+            navToggle.addEventListener('click', () => setNavOpen(!primaryNav.classList.contains('open')));
+            primaryNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNavOpen(false)));
+            document.addEventListener('click', (e) => {
+                if (primaryNav.classList.contains('open') && !primaryNav.contains(e.target) && !navToggle.contains(e.target)) {
+                    setNavOpen(false);
+                }
+            });
+        })();
+
+        // ── FAQ ACCORDION (accessible, no fixed-height clipping) ──
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const btn = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            btn.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-answer').style.maxHeight = null;
+                    i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // ── FAQ SEARCH + CATEGORY FILTER + SHOW MORE ──
+        (function () {
+            const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+            const tabs = Array.from(document.querySelectorAll('.faq-tab'));
+            const searchInput = document.getElementById('faqSearchInput');
+            const emptyState = document.getElementById('faqEmptyState');
+            const showMoreBtn = document.getElementById('faqShowMoreBtn');
+            const showMoreLabel = document.getElementById('faqShowMoreLabel');
+            const LIMIT = 10;
+            let activeCat = 'all';
+            let showAll = false;
+
+            function applyFilter() {
+                const q = (searchInput.value || '').trim().toLowerCase();
+                const matches = faqItems.filter(item => {
+                    const matchesCat = activeCat === 'all' || item.dataset.cat === activeCat;
+                    const matchesSearch = !q || item.textContent.toLowerCase().includes(q);
+                    return matchesCat && matchesSearch;
+                });
+
+                // While actively searching, always show every match — never hide search results.
+                const capApplies = !q && !showAll && matches.length > LIMIT;
+                const visibleMatches = capApplies ? matches.slice(0, LIMIT) : matches;
+
+                faqItems.forEach(item => {
+                    item.style.display = matches.includes(item) ? '' : 'none';
+                    item.classList.toggle('faq-hidden-more', matches.includes(item) && !visibleMatches.includes(item));
+                });
+
+                emptyState.style.display = matches.length === 0 ? 'block' : 'none';
+
+                if (!q && matches.length > LIMIT) {
+                    showMoreBtn.hidden = false;
+                    showMoreBtn.classList.toggle('is-open', showAll);
+                    showMoreLabel.textContent = showAll ? 'Show less' : `Show ${matches.length - LIMIT} more questions`;
+                } else {
+                    showMoreBtn.hidden = true;
+                }
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    activeCat = tab.dataset.filter;
+                    showAll = false;
+                    applyFilter();
+                });
+            });
+            if (searchInput) searchInput.addEventListener('input', applyFilter);
+            showMoreBtn.addEventListener('click', () => {
+                showAll = !showAll;
+                applyFilter();
+                if (!showAll) showMoreBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+
+            applyFilter();
+        })();
+
+        // ── CONTACT FORM: validation + submit ──
+        function validateField(id, groupId, isValid) {
+            const group = document.getElementById(groupId);
+            group.classList.toggle('has-error', !isValid);
+            return isValid;
+        }
+
+        function handleFormSubmit() {
+            const name    = document.getElementById('cf-name').value.trim();
+            const email   = document.getElementById('cf-email').value.trim();
+            const phone   = document.getElementById('cf-phone').value.trim();
+            const subject = document.getElementById('cf-subject').value;
+            const message = document.getElementById('cf-message').value.trim();
+
+            const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            const phoneOk = /^(\+?91[\-\s]?)?[6-9]\d{9}$/.test(phone.replace(/\s/g, ''));
+
+            const checks = [
+                validateField('cf-name', 'fg-name', name.length >= 2),
+                validateField('cf-email', 'fg-email', emailOk),
+                validateField('cf-phone', 'fg-phone', phoneOk),
+                validateField('cf-subject', 'fg-subject', !!subject),
+                validateField('cf-message', 'fg-message', message.length >= 10)
+            ];
+
+            if (checks.includes(false)) {
+                document.querySelector('.form-group.has-error input, .form-group.has-error select, .form-group.has-error textarea')
+                    ?.focus();
+                return;
+            }
+
+            const btn = document.getElementById('cfSubmitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending…';
+
+            setTimeout(() => {
+                document.getElementById('contactFormWrap').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+            }, 500);
+        }
+
+        // Clear error state as the person fixes a field
+        ['cf-name', 'cf-email', 'cf-phone', 'cf-subject', 'cf-message'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', () => el.closest('.form-group').classList.remove('has-error'));
+            el.addEventListener('change', () => el.closest('.form-group').classList.remove('has-error'));
+        });
+    </script>
+
+    <!-- FAQ structured data for search engines -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Who can join LearnCraft Hub?", "acceptedAnswer": { "@type": "Answer", "text": "Our programs are open to everyone — school leavers, college students, fresh graduates, and working professionals looking to upskill or pivot into tech. No prior experience is required for most courses." } },
+            { "@type": "Question", "name": "Are industry-recognised certificates provided?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Upon successful completion of any course, you receive a digitally verifiable, industry-recognised certificate that you can share directly on LinkedIn or include in your résumé." } },
+            { "@type": "Question", "name": "What does placement support include?", "acceptedAnswer": { "@type": "Answer", "text": "Our dedicated placement team assists with résumé building, LinkedIn profile optimisation, mock interviews, and direct job referrals to our hiring partners — all at no additional cost to enrolled students." } },
+            { "@type": "Question", "name": "Are classes conducted online or in person?", "acceptedAnswer": { "@type": "Answer", "text": "Both modes are available. You can attend live online sessions from anywhere in India, or visit our physical learning centre in Madurai for in-person workshops and hands-on labs." } },
+            { "@type": "Question", "name": "How long does a course take to complete?", "acceptedAnswer": { "@type": "Answer", "text": "Program duration varies from 4 weeks (short skill boosters) to 6 months (comprehensive full-stack or AI programs). Exact timelines are listed on each course's detail page." } },
+            { "@type": "Question", "name": "What are the fee and payment options?", "acceptedAnswer": { "@type": "Answer", "text": "We offer flexible instalment plans and need-based scholarships for eligible students. Contact our admissions team for a personalised fee breakdown." } },
+            { "@type": "Question", "name": "Can I switch courses after enrolment?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, course transfers are allowed within the first two weeks of enrolment, subject to seat availability." } },
+            { "@type": "Question", "name": "Is there access to recorded sessions?", "acceptedAnswer": { "@type": "Answer", "text": "All live sessions are recorded and made available on the student portal within 24 hours." } },
+            { "@type": "Question", "name": "What if I'm not happy after the first few classes?", "acceptedAnswer": { "@type": "Answer", "text": "You can opt out within the first week of any course for a full refund of fees paid, no questions asked." } },
+            { "@type": "Question", "name": "Do you offer internships alongside placement support?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Several of our hiring partners offer paid internships to high-performing students, which often convert into full-time offers." } }
+        ]
+    }
+    </script>
+</body>
+</html>

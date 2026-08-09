@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Courses - LearnCraft Hub</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,600&amp;family=Lato:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* Continue-learning card — a light, elevated card that overlaps the bottom
+       of the dark hero for depth, in the style of a "continue where you left
+       off" panel. Kept crisp (small controlled shadow, no blur bleed) so it
+       reads as an intentional layered card rather than a floating glitch. */
+    .my-courses-banner {
+        position: relative;
+        z-index: 2;
+        padding: 0 40px;
+        margin: 32px 0 16px;
+    }
+    .my-courses-banner[hidden] { display: none; }
+    .mcb-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 20px 26px;
+        box-shadow: 0 10px 24px rgba(15,23,42,0.10);
+    }
+    .mcb-icon {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: #e0e9fb;
+        border: 1px solid #bfd0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1e3a8a;
+    }
+    .mcb-icon svg { width: 24px; height: 24px; }
+    .mcb-text { flex: 1; min-width: 0; }
+    .mcb-eyebrow {
+        display: block;
+        color: #1e3a8a;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+    }
+    .mcb-text h3 {
+        margin: 0 0 2px;
+        color: #0f172a;
+        font-family: 'Fraunces', serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+    .mcb-text h3 #mcbCount {
+        color: #1e3a8a;
+    }
+    .mcb-text p {
+        margin: 0;
+        color: #475569;
+        font-size: 0.87rem;
+        line-height: 1.5;
+    }
+    .mcb-btn {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 22px;
+        background: #1e3a8a;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.88rem;
+        font-weight: 700;
+        font-family: inherit;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .mcb-btn:hover { background: #1e40af; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(30,58,138,0.3); }
+    @media (max-width: 720px) {
+        .my-courses-banner { padding: 0 20px; margin: 20px 0 32px; }
+        .mcb-inner { flex-direction: column; text-align: center; padding: 22px 20px; }
+        .mcb-btn { width: 100%; justify-content: center; }
+    }
+    .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+        transition: 0.3s;
+        z-index: 999;
+    }
+    .scroll-top:hover {
+        background: #1e3a8a;
+        transform: translateY(-3px);
+    }
+</style>
+</head>
+<body class="about-page">
+<header>
+<div class="navbar">
+<img alt="Logo" class="logo" src="images/logo.png"/>
+<nav id="primaryNav">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a class="active" href="courses.html">Courses</a>
+<a href="projects.html">Projects &amp; Practice</a>
+<a href="career-guidance.html">Career Guidance</a>
+<a href="faq-contact.html">FAQ &amp; Contact</a>
+</nav>
+<div class="navbar-search" id="navbarSearch">
+<button class="navbar-search-toggle" id="navbarSearchToggle" aria-label="Search courses">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="11" cy="11" r="7"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg>
+</button>
+<div class="navbar-search-panel">
+<div class="navbar-search-bar">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="11" cy="11" r="7"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg>
+<input type="text" id="navSearchInput" placeholder="Search 40+ courses..."/>
+</div>
+<div class="navbar-search-results" id="navSearchResults"></div>
+</div>
+</div>
+<button aria-controls="primaryNav" aria-expanded="false" aria-label="Toggle navigation menu" class="nav-toggle" id="navToggle">
+<span></span><span></span><span></span>
+</button>
+</div>
+</header>
+<!-- SIDE CATEGORY NAV -->
+<nav class="side-nav side-nav-categories" aria-label="Course categories">
+<button class="side-nav-link cat-learn-more-btn" data-target="programming" data-tooltip="Programming Fundamentals" type="button">💻</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="webdev" data-tooltip="Web Development" type="button">🌐</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="mobile" data-tooltip="Mobile App Development" type="button">📱</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="ai" data-tooltip="AI &amp; Next-Gen Tech" type="button">🤖</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="data" data-tooltip="Data Science &amp; Analytics" type="button">📊</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="security" data-tooltip="Cyber Security" type="button">🔒</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="cloud" data-tooltip="Cloud, DevOps &amp; Blockchain" type="button">☁️</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="design" data-tooltip="Design" type="button">🎨</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="business" data-tooltip="Business &amp; Marketing" type="button">📈</button>
+<button class="side-nav-link cat-learn-more-btn" data-target="certificate" data-tooltip="Certificate &amp; Job-Ready" type="button">🎓</button>
+</nav>
+<!-- COURSES HERO -->
+<section class="courses-hero">
+<p class="about-kicker">All Courses</p>
+<h1>One Platform. Every Skill<br/>You Need to Get Hired.</h1>
+<p>
+            From programming fundamentals to next-gen AI and job-ready certificate
+            programs — explore 50+ courses across 10 categories built around real projects.
+        </p>
+<div class="courses-hero-stats">
+<div><strong>50+</strong><span>Courses</span></div>
+<div><strong>10</strong><span>Categories</span></div>
+<div><strong>10K+</strong><span>Students</span></div>
+<div><strong>4.7</strong><span>Avg Rating</span></div>
+</div>
+</section>
+<!-- MY COURSES BANNER (shown only when the learner has active enrollments) -->
+<section class="my-courses-banner" id="myCoursesBanner" hidden>
+<div class="mcb-inner">
+<div class="mcb-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 10 12 5 2 10l10 5 10-5Z"></path>
+<path d="M6 12v5c0 1.1 2.7 3 6 3s6-1.9 6-3v-5"></path>
+</svg>
+</div>
+<div class="mcb-text">
+<span class="mcb-eyebrow">Continue learning</span>
+<h3 id="mcbHeading">You're enrolled in <span id="mcbCount">0</span> courses</h3>
+<p>Pick up right where you left off, or browse your saved courses.</p>
+</div>
+<button class="mcb-btn" id="myCoursesBannerBtn" type="button">Go to My Courses <span aria-hidden="true">→</span></button>
+</div>
+</section>
+<!-- FILTER BAR -->
+<!-- COURSE SECTIONS -->
+<div class="course-grid-section"><section class="category-overview-section">
+<div class="category-overview-heading">
+<p class="orbit-kicker">Browse by category</p>
+<p>Pick any category to see what's inside — the skills you'll gain and every course available to enroll.</p>
+</div>
+<div class="category-grid" id="courseCatGrid">
+<button class="category-grid-card cat-learn-more-btn" data-cat="programming" data-target="programming" title="Programming — 4 courses" type="button">
+<div class="cg-illustration"><img alt="Programming Fundamentals" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">💻</span><span class="cg-label">Programming Fundamentals</span></div>
+<span class="cg-desc">Learn the core languages every developer needs to start coding.</span>
+<div class="cg-tags"><span class="cg-tag">Python</span><span class="cg-tag">Java</span><span class="cg-tag">C++</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.7</span><span class="cg-stat-sep">·</span><span class="cg-stat">47.5K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">4 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="webdev" data-target="webdev" title="Web Dev — 3 courses" type="button">
+<div class="cg-illustration"><img alt="Web Development" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">🌐</span><span class="cg-label">Web Development</span></div>
+<span class="cg-desc">Build complete, production-ready websites and web apps.</span>
+<div class="cg-tags"><span class="cg-tag">React</span><span class="cg-tag">Node.js</span><span class="cg-tag">HTML/CSS</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.7</span><span class="cg-stat-sep">·</span><span class="cg-stat">39.2K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">3 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="mobile" data-target="mobile" title="Mobile — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Mobile App Development" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">📱</span><span class="cg-label">Mobile App Development</span></div>
+<span class="cg-desc">Create apps that run on Android and iOS from one codebase.</span>
+<div class="cg-tags"><span class="cg-tag">Flutter</span><span class="cg-tag">Kotlin</span><span class="cg-tag">Swift</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.5</span><span class="cg-stat-sep">·</span><span class="cg-stat">9.2K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="ai" data-target="ai" title="AI &amp; GenAI — 3 courses" type="button">
+<div class="cg-illustration"><img alt="AI &amp; Next-Gen Tech" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">🤖</span><span class="cg-label">AI &amp; Next-Gen Tech</span></div>
+<span class="cg-desc">Future-ready skills in artificial intelligence and generative AI.</span>
+<div class="cg-tags"><span class="cg-tag">Machine Learning</span><span class="cg-tag">Deep Learning</span><span class="cg-tag">GenAI</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.8</span><span class="cg-stat-sep">·</span><span class="cg-stat">36.8K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">3 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="data" data-target="data" title="Data Science — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Data Science &amp; Analytics" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">📊</span><span class="cg-label">Data Science &amp; Analytics</span></div>
+<span class="cg-desc">Turn raw data into insights and business decisions.</span>
+<div class="cg-tags"><span class="cg-tag">Python</span><span class="cg-tag">SQL</span><span class="cg-tag">Analytics</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.7</span><span class="cg-stat-sep">·</span><span class="cg-stat">22.5K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="security" data-target="security" title="Cyber Security — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Cyber Security" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">🔒</span><span class="cg-label">Cyber Security</span></div>
+<span class="cg-desc">Protect systems and networks like an industry professional.</span>
+<div class="cg-tags"><span class="cg-tag">Network Security</span><span class="cg-tag">Ethical Hacking</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.8</span><span class="cg-stat-sep">·</span><span class="cg-stat">14.3K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="cloud" data-target="cloud" title="Cloud &amp; DevOps — 3 courses" type="button">
+<div class="cg-illustration"><img alt="Cloud, DevOps &amp; Blockchain" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">☁️</span><span class="cg-label">Cloud, DevOps &amp; Blockchain</span></div>
+<span class="cg-desc">Deploy, automate, and scale modern infrastructure.</span>
+<div class="cg-tags"><span class="cg-tag">AWS</span><span class="cg-tag">DevOps</span><span class="cg-tag">Blockchain</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.6</span><span class="cg-stat-sep">·</span><span class="cg-stat">16.8K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">3 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="design" data-target="design" title="Design — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Design" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">🎨</span><span class="cg-label">Design</span></div>
+<span class="cg-desc">Craft beautiful interfaces and visual brand identities.</span>
+<div class="cg-tags"><span class="cg-tag">Figma</span><span class="cg-tag">UI/UX</span><span class="cg-tag">Branding</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.7</span><span class="cg-stat-sep">·</span><span class="cg-stat">16.9K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="business" data-target="business" title="Business — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Business &amp; Marketing" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">📈</span><span class="cg-label">Business &amp; Marketing</span></div>
+<span class="cg-desc">Grow brands and manage products like a professional.</span>
+<div class="cg-tags"><span class="cg-tag">Digital Marketing</span><span class="cg-tag">Product Mgmt</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.5</span><span class="cg-stat-sep">·</span><span class="cg-stat">13.9K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+<button class="category-grid-card cat-learn-more-btn" data-cat="certificate" data-target="certificate" title="Certificate — 2 courses" type="button">
+<div class="cg-illustration"><img alt="Certificate &amp; Job-Ready Programs" class="cg-img" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&amp;fit=crop&amp;w=500&amp;q=80';" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=500&amp;q=80"/></div>
+<div class="cg-body">
+<div class="cg-label-row"><span class="cg-icon">🎓</span><span class="cg-label">Certificate &amp; Job-Ready</span></div>
+<span class="cg-desc">Intensive, placement-focused tracks for career switchers.</span>
+<div class="cg-tags"><span class="cg-tag">Placement Support</span><span class="cg-tag">Capstone</span></div>
+<div class="cg-stats"><span class="cg-stat">⭐ 4.8</span><span class="cg-stat-sep">·</span><span class="cg-stat">9.9K+ enrolled</span></div>
+<div class="cg-footer"><span class="cg-count">2 courses</span><span class="cg-cta">Learn More <span class="cg-arrow">→</span></span></div>
+</div>
+</button>
+</div>
+</section>
+<!-- SEARCH YOUR COURSE (moved from header) -->
+<section class="course-search-section">
+<div class="course-search-inline">
+<div class="course-search-label">
+<h2>🔍 Search Your Course</h2>
+<p>Find any course by name, skill, or category instantly.</p>
+</div>
+<div class="course-search-bar">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewBox="0 0 24 24" width="20">
+<circle cx="11" cy="11" r="7"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+<input id="courseSearch" placeholder="Search your course..." type="text"/>
+<button aria-label="Search" class="course-search-btn">
+<svg fill="none" height="18" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24" width="18">
+<circle cx="11" cy="11" r="7"></circle>
+<line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+</svg>
+</button>
+</div>
+<div class="search-tags">
+<span>Popular:</span>
+<button class="search-tag-btn">AI & ML</button>
+<button class="search-tag-btn">Full Stack</button>
+<button class="search-tag-btn">Cyber Security</button>
+<button class="search-tag-btn">UI/UX</button>
+<button class="search-tag-btn">Data Science</button>
+<button class="search-tag-btn">Cloud & DevOps</button>
+</div>
+</div>
+<div class="search-results" id="searchResults"></div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="programming" id="detail-programming">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>💻 Programming Fundamentals</h2>
+<p>Start your coding journey with the languages every developer must know</p>
+</div><div class="category-benefits"><h4>Why learn Programming Fundamentals?</h4><ul><li><span class="benefit-check">✓</span>Build rock-solid programming logic that transfers to any language</li><li><span class="benefit-check">✓</span>Write real, working code from your very first lesson</li><li><span class="benefit-check">✓</span>Foundation for every other track — web, mobile, AI &amp; data</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="programming">
+<span class="ribbon badge-bestseller">Bestseller</span>
+<div class="course-card-img">
+<span class="course-cat-icon">💻</span>
+<img alt="Python Programming Masterclass" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>Python Programming Masterclass</h3>
+<p>From basic syntax to OOP, file handling, and mini-projects — the most beginner-friendly way into coding.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.8</span>
+<span class="rating-count">(3,120 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 18,200 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹3,798 <small>(₹1,899/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="programming">
+<span class="ribbon badge-new">New</span>
+<div class="course-card-img">
+<span class="course-cat-icon">💻</span>
+<img alt="Java Programming Fundamentals" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>Java Programming Fundamentals</h3>
+<p>Core Java, OOP concepts, collections, and exception handling with hands-on coding exercises.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(1,180 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 9,400 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹4,198 <small>(₹2,099/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="programming">
+<div class="course-card-img">
+<span class="course-cat-icon">💻</span>
+<img alt="C &amp; C++ Foundations" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>C &amp; C++ Foundations</h3>
+<p>Build a rock-solid base in C/C++ — pointers, memory management, and data structures from scratch.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.5</span>
+<span class="rating-count">(940 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 7,650 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹3,898 <small>(₹1,949/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="programming">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">💻</span>
+<img alt="JavaScript Essentials" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>JavaScript Essentials</h3>
+<p>Master JS fundamentals, DOM manipulation, and ES6+ features used in every modern web app.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(2,050 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 1 Month</span>
+<span>👥 12,300 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹3,499</span>₹1,799 <small>(₹1,799/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="webdev" id="detail-webdev">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>🌐 Web Development</h2>
+<p>Build complete, production-ready websites and web applications</p>
+</div><div class="category-benefits"><h4>Why learn Web Development?</h4><ul><li><span class="benefit-check">✓</span>Learn to build and ship complete, production-ready websites</li><li><span class="benefit-check">✓</span>Work with the exact stack real companies hire for</li><li><span class="benefit-check">✓</span>Portfolio-ready projects you can show to employers</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="webdev">
+<span class="ribbon badge-bestseller">Bestseller</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🌐</span>
+<img alt="Full Stack Web Development" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Full Stack Web Development</h3>
+<p>Build and deploy complete web apps using HTML, CSS, JavaScript, React, and Node.js with real projects.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.9</span>
+<span class="rating-count">(5,230 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 6 Months</span>
+<span>👥 21,500 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹16,999</span>₹12,594 <small>(₹2,099/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="webdev">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🌐</span>
+<img alt="Frontend Development with React" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Frontend Development with React</h3>
+<p>Specialize in fast, responsive interfaces using React, component design, and state management.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(1,640 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 10,800 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹5,697 <small>(₹1,899/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="webdev">
+<span class="ribbon badge-new">New</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🌐</span>
+<img alt="Backend Development with Node.js" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Backend Development with Node.js</h3>
+<p>Design REST APIs, handle databases, and build scalable backend systems with Node and Express.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.5</span>
+<span class="rating-count">(820 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 6,900 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹6,447 <small>(₹2,149/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="mobile" id="detail-mobile">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>📱 Mobile App Development</h2>
+<p>Create apps that run on Android and iOS from one codebase</p>
+</div><div class="category-benefits"><h4>Why learn Mobile App Development?</h4><ul><li><span class="benefit-check">✓</span>Ship one codebase that runs on both Android and iOS</li><li><span class="benefit-check">✓</span>Learn the frameworks powering today's top-rated apps</li><li><span class="benefit-check">✓</span>Publish a real app to app stores by the end of the track</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="mobile">
+<span class="ribbon badge-new">New</span>
+<div class="course-card-img">
+<span class="course-cat-icon">📱</span>
+<img alt="Mobile App Development with Flutter" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Mobile App Development with Flutter</h3>
+<p>Build cross-platform Android &amp; iOS apps from a single codebase using Flutter and Dart.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(610 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 5,400 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹5,847 <small>(₹1,949/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="mobile">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">📱</span>
+<img alt="Native Android &amp; iOS Development" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Native Android &amp; iOS Development</h3>
+<p>Build true native apps with Kotlin for Android and Swift for iOS, from UI to app store deployment.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.5</span>
+<span class="rating-count">(430 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 4 Months</span>
+<span>👥 3,800 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹9,999</span>₹6,499 <small>(₹2,166/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="ai" id="detail-ai">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>🤖 AI &amp; Next-Gen Tech</h2>
+<p>Future-ready skills in artificial intelligence and generative AI</p>
+</div><div class="category-benefits"><h4>Why learn AI &amp; Next-Gen Tech?</h4><ul><li><span class="benefit-check">✓</span>Future-proof your career with in-demand AI &amp; GenAI skills</li><li><span class="benefit-check">✓</span>Build real AI apps, not just theory</li><li><span class="benefit-check">✓</span>Learn to work with LLMs, agents, and modern AI tooling</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="ai">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🤖</span>
+<img alt="AI &amp; Machine Learning" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>AI &amp; Machine Learning</h3>
+<p>Learn Python, data modeling, and ML fundamentals while building real-world AI applications.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.8</span>
+<span class="rating-count">(3,890 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 5 Months</span>
+<span>👥 16,700 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹14,999</span>₹10,495 <small>(₹2,099/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="ai">
+<span class="ribbon badge-nextgen">Next-Gen</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🤖</span>
+<img alt="Deep Learning &amp; Neural Networks" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Advanced</span>
+</div>
+<h3>Deep Learning &amp; Neural Networks</h3>
+<p>Go beyond the basics with CNNs, RNNs, computer vision, and NLP on real-world datasets.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(1,320 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 4 Months</span>
+<span>👥 8,200 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹11,999</span>₹8,796 <small>(₹2,199/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="ai">
+<span class="ribbon badge-nextgen">Next-Gen</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🤖</span>
+<img alt="Generative AI &amp; Prompt Engineering" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1591453089816-0fbb971b454c?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Generative AI &amp; Prompt Engineering</h3>
+<p>Work with LLMs, build AI agents, and design production-grade prompts for real applications.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.8</span>
+<span class="rating-count">(2,210 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 11,900 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹6,499</span>₹3,798 <small>(₹1,899/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="data" id="detail-data">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>📊 Data Science &amp; Analytics</h2>
+<p>Turn raw data into insights and business decisions</p>
+</div><div class="category-benefits"><h4>Why learn Data Science &amp; Analytics?</h4><ul><li><span class="benefit-check">✓</span>Turn raw numbers into insights businesses actually use</li><li><span class="benefit-check">✓</span>Master SQL, Excel, Power BI, and Python for analytics</li><li><span class="benefit-check">✓</span>In-demand skillset across every single industry</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="data">
+<span class="ribbon badge-bestseller">Bestseller</span>
+<div class="course-card-img">
+<span class="course-cat-icon">📊</span>
+<img alt="Data Analytics" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>Data Analytics</h3>
+<p>Work with real datasets to learn SQL, Excel, Power BI, and Python for business reporting.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(2,680 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 13,400 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹6,147 <small>(₹2,049/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="data">
+<div class="course-card-img">
+<span class="course-cat-icon">📊</span>
+<img alt="Data Science with Python" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Data Science with Python</h3>
+<p>Combine statistics, Python, and visualization tools to extract insights and build data-driven solutions.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(1,450 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 4 Months</span>
+<span>👥 9,100 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹11,999</span>₹7,796 <small>(₹1,949/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="security" id="detail-security">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>🔒 Cyber Security</h2>
+<p>Protect systems and networks like an industry professional</p>
+</div><div class="category-benefits"><h4>Why learn Cyber Security?</h4><ul><li><span class="benefit-check">✓</span>Learn to think and defend like a security professional</li><li><span class="benefit-check">✓</span>Hands-on labs in ethical hacking and network defense</li><li><span class="benefit-check">✓</span>One of the fastest-growing, highest-paying tech fields</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="security">
+<div class="course-card-img">
+<span class="course-cat-icon">🔒</span>
+<img alt="Cyber Security" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Cyber Security</h3>
+<p>Master network defense, security auditing, and incident response through hands-on labs.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.8</span>
+<span class="rating-count">(1,390 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 4 Months</span>
+<span>👥 7,800 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹11,999</span>₹8,596 <small>(₹2,149/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="security">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🔒</span>
+<img alt="Ethical Hacking &amp; Penetration Testing" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Advanced</span>
+</div>
+<h3>Ethical Hacking &amp; Penetration Testing</h3>
+<p>Learn vulnerability assessment and pen-testing techniques used by security professionals.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(980 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 6,500 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹5,997 <small>(₹1,999/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="cloud" id="detail-cloud">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>☁️ Cloud, DevOps &amp; Blockchain</h2>
+<p>Deploy, automate, and scale modern infrastructure</p>
+</div><div class="category-benefits"><h4>Why learn Cloud, DevOps &amp; Blockchain?</h4><ul><li><span class="benefit-check">✓</span>Deploy and scale infrastructure the way modern teams do</li><li><span class="benefit-check">✓</span>Get hands-on with AWS/Azure, CI/CD, Docker &amp; Kubernetes</li><li><span class="benefit-check">✓</span>Cloud &amp; DevOps roles are among the most in-demand today</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="cloud">
+<span class="ribbon badge-nextgen">Next-Gen</span>
+<div class="course-card-img">
+<span class="course-cat-icon">☁️</span>
+<img alt="Cloud Computing with AWS" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Cloud Computing with AWS</h3>
+<p>Deploy, scale, and manage applications on AWS — the most in-demand cloud skill today.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(1,510 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 8,900 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹6,297 <small>(₹2,099/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="cloud">
+<span class="ribbon badge-new">New</span>
+<div class="course-card-img">
+<span class="course-cat-icon">☁️</span>
+<img alt="DevOps &amp; CI/CD Pipelines" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Advanced</span>
+</div>
+<h3>DevOps &amp; CI/CD Pipelines</h3>
+<p>Automate builds and deployments using Docker, Kubernetes, Jenkins, and Git workflows.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(560 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 4,700 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹6,597 <small>(₹2,199/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="cloud">
+<span class="ribbon badge-nextgen">Next-Gen</span>
+<div class="course-card-img">
+<span class="course-cat-icon">☁️</span>
+<img alt="Blockchain Development" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Advanced</span>
+</div>
+<h3>Blockchain Development</h3>
+<p>Understand smart contracts, Web3, and decentralized apps — build on Ethereum from scratch.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.5</span>
+<span class="rating-count">(410 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 3 Months</span>
+<span>👥 3,200 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹8,999</span>₹6,747 <small>(₹2,249/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="design" id="detail-design">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>🎨 Design</h2>
+<p>Craft beautiful interfaces and visual brand identities</p>
+</div><div class="category-benefits"><h4>Why learn Design?</h4><ul><li><span class="benefit-check">✓</span>Craft interfaces users love and brands remember</li><li><span class="benefit-check">✓</span>Learn the full UI/UX process from research to prototype</li><li><span class="benefit-check">✓</span>Build a portfolio that gets you noticed by hiring teams</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="design">
+<div class="course-card-img">
+<span class="course-cat-icon">🎨</span>
+<img alt="UI/UX &amp; Product Design" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>UI/UX &amp; Product Design</h3>
+<p>Design user-friendly digital products from research to high-fidelity prototypes using Figma.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.7</span>
+<span class="rating-count">(1,920 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 4 Months</span>
+<span>👥 10,600 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹11,999</span>₹7,596 <small>(₹1,899/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="design">
+<div class="course-card-img">
+<span class="course-cat-icon">🎨</span>
+<img alt="Graphic Design &amp; Branding" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>Graphic Design &amp; Branding</h3>
+<p>Learn visual design, branding, and Adobe tools to create logos and marketing creatives.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(780 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 6,300 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹4,098 <small>(₹2,049/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="business" id="detail-business">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>📈 Business &amp; Marketing</h2>
+<p>Grow brands and manage products like a professional</p>
+</div><div class="category-benefits"><h4>Why learn Business &amp; Marketing?</h4><ul><li><span class="benefit-check">✓</span>Learn to grow brands, products, and revenue strategically</li><li><span class="benefit-check">✓</span>Practical, campaign-based learning — not just theory</li><li><span class="benefit-check">✓</span>Skills that apply to startups, agencies, and enterprises alike</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="business">
+<span class="ribbon badge-new">New</span>
+<div class="course-card-img">
+<span class="course-cat-icon">📈</span>
+<img alt="Digital Marketing Mastery" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Beginner</span>
+</div>
+<h3>Digital Marketing Mastery</h3>
+<p>SEO, social media, paid ads, and analytics — everything to run a modern marketing campaign.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.6</span>
+<span class="rating-count">(1,340 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 9,800 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹4,398 <small>(₹2,199/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="business">
+<div class="course-card-img">
+<span class="course-cat-icon">📈</span>
+<img alt="Product Management Essentials" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Intermediate</span>
+</div>
+<h3>Product Management Essentials</h3>
+<p>Learn roadmapping, stakeholder communication, and agile delivery for tech products.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.5</span>
+<span class="rating-count">(390 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 2 Months</span>
+<span>👥 4,100 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹5,999</span>₹3,598 <small>(₹1,799/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="course-category-section course-detail-panel detail-panel" data-cat="certificate" id="detail-certificate">
+<button class="detail-back-btn" type="button">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewBox="0 0 24 24"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Back to All Categories
+            </button><div class="category-heading">
+<h2>🎓 Certificate &amp; Job-Ready Programs</h2>
+<p>Intensive, placement-focused tracks for career switchers</p>
+</div><div class="category-benefits"><h4>Why learn Certificate &amp; Job-Ready Programs?</h4><ul><li><span class="benefit-check">✓</span>Intensive, placement-focused tracks built for career switchers</li><li><span class="benefit-check">✓</span>Real capstone projects plus mentorship and interview prep</li><li><span class="benefit-check">✓</span>Structured path from beginner to job-ready professional</li></ul></div>
+<div class="full-course-grid">
+<div class="full-course-card" data-category="certificate">
+<span class="ribbon badge-bestseller">Bestseller</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🎓</span>
+<img alt="Full Stack Career Certificate Program" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&amp;fit=crop&amp;w=600&amp;q=80';" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Job-Ready</span>
+</div>
+<h3>Full Stack Career Certificate Program</h3>
+<p>An intensive, placement-focused track combining web development, projects, and interview prep.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.9</span>
+<span class="rating-count">(1,870 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 9 Months</span>
+<span>👥 5,600 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹24,999</span>₹17,991 <small>(₹1,999/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+<div class="full-course-card" data-category="certificate">
+<span class="ribbon badge-trending">Trending</span>
+<div class="course-card-img">
+<span class="course-cat-icon">🎓</span>
+<img alt="Data Science Career Certificate Program" loading="lazy" onerror="this.style.display='none';" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=600&amp;q=80"/>
+</div>
+<div class="full-course-card-body">
+<div class="course-card-top">
+<span class="course-level">Job-Ready</span>
+</div>
+<h3>Data Science Career Certificate Program</h3>
+<p>End-to-end certification track in data analytics, ML, and capstone projects with placement support.</p>
+<div class="course-rating-row">
+<span class="stars">⭐⭐⭐⭐⭐</span>
+<span class="rating-num">4.8</span>
+<span class="rating-count">(1,240 ratings)</span>
+</div>
+<div class="course-meta">
+<span>🗓️ 8 Months</span>
+<span>👥 4,300 enrolled</span>
+<span>🎓 Certificate</span>
+</div>
+<div class="course-card-footer">
+<div class="course-price"><span>₹21,999</span>₹16,392 <small>(₹2,049/mo)</small></div>
+<a class="enroll-btn" href="#">Enroll Now</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- CTA BANNER -->
+<section class="cta-banner">
+<div class="cta-content">
+<h2>Not Sure Which Course Fits You?</h2>
+<p>Talk to our counsellors and find the right learning path for your career goals</p>
+<div class="cta-buttons">
+<a class="cta-btn-primary" href="career-guidance.html#mentorship">Book Free Counselling</a>
+<a class="cta-btn-secondary" href="faq-contact.html">Contact Us</a>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-top">
+<div class="footer-brand">
+<div class="footer-brand-text">
+<h3>LearnCraft<span>Hub</span></h3>
+<p class="tagline">Learning Beyond Limits</p>
+</div>
+<p>Empowering students with industry-ready skills,
+                    real projects, and career-focused mentorship
+                    for a better tomorrow.</p>
+</div>
+<div class="footer-links">
+<h4>Quick Links</h4>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="courses.html">Courses</a>
+<a href="projects.html">Projects &amp; Practice</a>
+<a href="career-guidance.html">Career Guidance</a>
+<a href="faq-contact.html">FAQ &amp; Contact</a>
+</div>
+<div class="footer-links">
+<h4>Our Courses</h4>
+<a href="#">Full Stack Development</a>
+<a href="#">UI/UX Design</a>
+<a href="#">Data Analytics</a>
+<a href="#">Cyber Security</a>
+<a href="#">AI &amp; Machine Learning</a>
+</div>
+<div class="footer-contact">
+<h4>Contact Us</h4>
+<p>📧 info@learncrafthub.com</p>
+<p>📞 +91 88388 56461</p>
+<p>☎️ 0452-2345 678</p>
+<p>📍 Madurai, Tamil Nadu</p>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 LearnCraft Hub. All Rights Reserved.
+                Made with ❤️ in Madurai</p>
+<p class="footer-disclaimer">
+                All company, university, and platform logos and names are trademarks of their respective owners.
+                They are used here solely for identification purposes and do not imply any affiliation, partnership, sponsorship, or endorsement by LearnCraft Hub.
+            </p>
+</div>
+</footer>
+<script src="script.js"></script>
+<button class="scroll-top" id="scrollTop">↑</button>
+
+<script>
+    const pageScrollBtn = document.getElementById('scrollTop');
+    if (pageScrollBtn) {
+        window.addEventListener('scroll', () => {
+            pageScrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+        });
+        pageScrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+</script>
+</body>
+</html>
