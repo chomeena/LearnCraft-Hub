@@ -727,8 +727,8 @@
                 order: 3;
                 flex-direction: column;
                 align-items: stretch;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.12);
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
                 border-radius: 12px;
                 margin-top: 14px;
                 padding: 6px;
@@ -739,10 +739,10 @@
                 padding: 13px 14px;
                 border-radius: 8px;
             }
-            nav#primaryNav a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+            nav#primaryNav a:hover { color: #2563eb; background: #eff6ff; }
             nav#primaryNav a.active {
-                color: #93c5fd;
-                background: rgba(255,255,255,0.08);
+                color: #2563eb;
+                background: #eff6ff;
                 border-bottom: none;
             }
             .logo { width: 170px; }
@@ -1167,6 +1167,26 @@
     <button class="scroll-top" id="scrollTop">↑</button>
     <script src="script.js"></script>
     <script>
+        // ── MOBILE NAV TOGGLE ──
+        (function () {
+            const navToggle = document.getElementById('navToggle');
+            const primaryNav = document.getElementById('primaryNav');
+            if (!navToggle || !primaryNav) return;
+
+            function setNavOpen(open) {
+                primaryNav.classList.toggle('open', open);
+                navToggle.classList.toggle('open', open);
+                navToggle.setAttribute('aria-expanded', String(open));
+            }
+            navToggle.addEventListener('click', () => setNavOpen(!primaryNav.classList.contains('open')));
+            primaryNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setNavOpen(false)));
+            document.addEventListener('click', (e) => {
+                if (primaryNav.classList.contains('open') && !primaryNav.contains(e.target) && !navToggle.contains(e.target)) {
+                    setNavOpen(false);
+                }
+            });
+        })();
+
         // ── FAQ ACCORDION (accessible, no fixed-height clipping) ──
         document.querySelectorAll('.faq-item').forEach(item => {
             const btn = item.querySelector('.faq-question');
