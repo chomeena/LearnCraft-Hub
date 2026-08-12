@@ -590,6 +590,25 @@ nav a.active {
     box-shadow: 0px 8px 22px rgba(0,0,0,0.18);
 }
 
+@media (max-width: 900px) {
+    .hero {
+        flex-direction: column;
+        padding: 28px 24px;
+        text-align: center;
+    }
+    .hero-text {
+        width: 100%;
+    }
+    .hero-image {
+        margin-right: 0;
+        margin-top: 24px;
+    }
+    .hero-image img {
+        width: 100%;
+        max-width: 380px;
+    }
+}
+
 /* COURSES SECTION */
 
 .courses{
@@ -632,6 +651,11 @@ nav a.active {
 @media (max-width: 600px) {
     .course-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 420px) {
+    .course-container {
+        grid-template-columns: 1fr;
     }
 }
 .course-card:hover{
@@ -1075,6 +1099,11 @@ nav a.active {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+@media (max-width: 420px) {
+    .features {
+        grid-template-columns: 1fr;
+    }
+}
 
 .feature-icon {
     width: 48px;
@@ -1193,6 +1222,11 @@ nav a.active {
 @media (max-width: 600px) {
     .roadmap {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 420px) {
+    .roadmap {
+        grid-template-columns: 1fr;
     }
 }
 .showcase {
