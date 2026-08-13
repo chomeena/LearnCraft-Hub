@@ -92,6 +92,12 @@ header{
     overflow-x: auto;
     padding-bottom: 2px;
 }
+@media (max-width: 700px) {
+    .partner-logos {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+}
 
 .partner-logos span {
     background: #f1f5f9;
@@ -811,8 +817,10 @@ nav a.active {
 }
 
 .testimonial-slider {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
     gap: 18px;
     max-width: 1480px;
     width: 100%;
@@ -820,13 +828,13 @@ nav a.active {
 
 @media (max-width: 900px) {
     .testimonial-slider {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
     }
 }
 
 @media (max-width: 600px) {
     .testimonial-slider {
-        grid-template-columns: 1fr;
+        gap: 12px;
     }
 }
 
@@ -837,6 +845,18 @@ nav a.active {
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 0 0 calc((100% - 36px) / 3);
+    scroll-snap-align: start;
+}
+@media (max-width: 900px) {
+    .testimonial-card {
+        flex-basis: calc((100% - 14px) / 2);
+    }
+}
+@media (max-width: 600px) {
+    .testimonial-card {
+        flex-basis: 100%;
+    }
 }
 
 .testimonial-card:hover {
