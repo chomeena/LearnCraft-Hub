@@ -4577,3 +4577,22 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
         }
     });
 })();
+
+// ── TESTIMONIAL SLIDER (prev/next arrows) ──
+(function () {
+    const slider = document.querySelector('.testimonial-slider');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    function scrollByOneCard(direction) {
+        const card = slider.querySelector('.testimonial-card');
+        if (!card) return;
+        const gap = parseFloat(getComputedStyle(slider).gap) || 18;
+        const amount = card.getBoundingClientRect().width + gap;
+        slider.scrollBy({ left: direction * amount, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', () => scrollByOneCard(-1));
+    nextBtn.addEventListener('click', () => scrollByOneCard(1));
+})();
