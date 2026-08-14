@@ -4491,6 +4491,13 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
         nav.classList.toggle('open', open);
         toggle.classList.toggle('open', open);
         toggle.setAttribute('aria-expanded', String(open));
+        if (!open) {
+            nav.querySelectorAll('.nav-group.open').forEach(g => {
+                g.classList.remove('open');
+                const btn = g.querySelector('.nav-group-toggle');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            });
+        }
     }
 
     toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
@@ -4501,6 +4508,19 @@ document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
         }
     });
 });
+
+// ── NAV GROUP TOGGLES (tap the arrow to expand/collapse a page's in-page section links) ──
+document.querySelectorAll('.nav-group-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const group = btn.closest('.nav-group');
+        if (!group) return;
+        const isOpen = group.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(isOpen));
+    });
+});
+
 // ── SIDE NAV SCROLLSPY (highlights the section currently in view) ──
 (function () {
     const sideNav = document.querySelector('.side-nav');
