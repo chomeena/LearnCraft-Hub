@@ -143,7 +143,20 @@ nav a.active {
     .navbar nav a { margin: 0; padding: 13px 14px; border-radius: 8px; }
     .navbar nav a:hover { color: #2563eb; background: #eff6ff; }
     .navbar nav a.active { color: #2563eb; background: #eff6ff; border-bottom: none; }
+    .section-jump-link { display: block; }
     .logo { width: 170px; }
+}
+
+.section-jump-link { display: none; }
+.navbar nav a.section-jump-link {
+    padding-left: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #64748b;
+}
+.navbar nav a.section-jump-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
 }
 
 /* NAVBAR COURSE SEARCH (top-right) */
@@ -1126,6 +1139,12 @@ nav a.active {
             <a href="courses.html">Courses</a>
             <a href="projects.html">Projects &amp; Practice</a>
             <a href="career-guidance.html" class="active">Career Guidance</a>
+            <a href="#roadmaps" class="section-jump-link">Roadmaps</a>
+            <a href="#internships" class="section-jump-link">Internships</a>
+            <a href="#events" class="section-jump-link">Workshops</a>
+            <a href="#resume" class="section-jump-link">Resume</a>
+            <a href="#interview" class="section-jump-link">Interview Prep</a>
+            <a href="#mentorship" class="section-jump-link">Mentorship</a>
             <a href="faq-contact.html">FAQ &amp; Contact</a>
         </nav>
 
