@@ -101,8 +101,16 @@ header{
 }
 @media (max-width: 700px) {
     .partner-logos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         flex-wrap: wrap;
         overflow-x: visible;
+        gap: 10px;
+    }
+    .partner-logos span {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
     }
 }
 
@@ -1229,13 +1237,10 @@ nav a.active {
 @media (max-width: 600px) {
     .features {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
     .why-us {
         padding: 32px 16px;
-    }
-    .features {
-        margin: 0 -16px;
-        gap: 12px;
     }
 }
 @media (max-width: 420px) {
@@ -1512,6 +1517,20 @@ nav a.active {
     max-width: 1480px;
     margin: 0 auto;
     box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+    .pair-row {
+        padding: 20px 16px;
+        gap: 14px;
+    }
+    .pair-row .info-card {
+        padding: 18px 16px;
+    }
+    .pair-row .info-card.partners,
+    .pair-row .info-card.course-search-section {
+        padding: 18px 16px;
+    }
 }
 
 .pair-row .info-card {
@@ -2083,6 +2102,7 @@ nav a.active {
     gap: 10px;
     box-shadow: 0 8px 24px rgba(0,0,0,0.08);
     position: relative;
+    box-sizing: border-box;
 }
 
 .course-search-bar svg {
@@ -2517,7 +2537,6 @@ nav a.active {
     }
     .package-container {
         grid-template-columns: 1fr;
-        margin: 0 -16px;
         gap: 16px;
         max-width: none;
     }
