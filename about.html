@@ -45,12 +45,21 @@
 
             <nav id="primaryNav">
                 <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="#about-hero" class="section-jump-link">About</a>
-                <a href="#mission-vision" class="section-jump-link">Mission & Vision</a>
-                <a href="#founder" class="section-jump-link">Founder</a>
-                <a href="#team" class="section-jump-link">Team</a>
-                <a href="faq-contact.html" class="section-jump-link">Contact</a>
+                <div class="nav-group">
+                    <div class="nav-item-row">
+                        <a href="about.html" class="active">About</a>
+                        <button type="button" class="nav-group-toggle" aria-label="Toggle About menu" aria-expanded="false">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="nav-group-children">
+                        <a href="#about-hero" class="section-jump-link">About</a>
+                        <a href="#mission-vision" class="section-jump-link">Mission & Vision</a>
+                        <a href="#founder" class="section-jump-link">Founder</a>
+                        <a href="#team" class="section-jump-link">Team</a>
+                        <a href="faq-contact.html" class="section-jump-link">Contact</a>
+                    </div>
+                </div>
                 <a href="courses.html">Courses</a>
                 <a href="projects.html">Projects & Practice</a>
                 <a href="career-guidance.html">Career Guidance</a>
