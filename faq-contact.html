@@ -720,9 +720,9 @@
         @media (max-width: 880px) {
             .navbar { flex-wrap: wrap; }
             .navbar-search { order: 1; }
-            .nav-toggle { display: flex; order: 2; }
+            .nav-toggle { display: none; }
             nav#primaryNav {
-                display: none;
+                display: flex;
                 flex-basis: 100%;
                 order: 3;
                 flex-direction: column;
@@ -733,7 +733,6 @@
                 margin-top: 14px;
                 padding: 6px;
             }
-            nav#primaryNav.open { display: flex; }
             nav#primaryNav a {
                 margin: 0;
                 padding: 13px 14px;
