@@ -130,6 +130,25 @@ nav a.active {
     color: #2563eb;
     background: #eff6ff;
 }
+.nav-group { display: contents; }
+.nav-item-row { display: contents; }
+.nav-group-children { display: contents; }
+.nav-group-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 8px 10px;
+}
+.nav-group-toggle svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+.nav-group.open .nav-group-toggle svg {
+    transform: rotate(180deg);
+}
 
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; position: relative; }
@@ -156,6 +175,16 @@ nav a.active {
     .navbar nav a:hover { color: #2563eb; background: #eff6ff; }
     .navbar nav a.active { color: #2563eb; background: #eff6ff; border-bottom: none; }
     .section-jump-link { display: block; }
+    .nav-group { display: flex; flex-direction: column; }
+    .nav-item-row { display: flex; align-items: center; justify-content: space-between; }
+    .nav-item-row a { flex: 1; }
+    .nav-group-toggle { display: flex; align-items: center; justify-content: center; }
+    .nav-group-children { display: none; flex-direction: column; }
+    .nav-group.open .nav-group-children { display: flex; }
+    @media (hover: hover) and (pointer: fine) {
+        .nav-group:hover .nav-group-children { display: flex; }
+        .nav-group:hover .nav-group-toggle svg { transform: rotate(180deg); }
+    }
     .logo { width: 170px; }
 }
 
@@ -295,6 +324,13 @@ nav a.active {
 .sec-h{font-family:var(--font-d);font-weight:900;font-size:clamp(1.9rem,3vw,2.6rem);color:var(--ink);letter-spacing:-.028em;line-height:1.15;margin-bottom:10px}
 .sec-p{font-size:1.02rem;font-weight:500;color:var(--muted);line-height:1.75;max-width:580px}
 @media(max-width:700px){.sec{padding:40px 20px}header{padding:14px 20px}}
+@media(max-width:600px){
+    .sec{padding:32px 16px}
+    .int-cat-grid{margin:0 -16px}
+    .mentor-layout{margin:0 -16px}
+    .ip-company-grid{margin:0 -16px}
+    .tpl-strip{margin-left:-16px;margin-right:-16px}
+}
 
 /* ═══════════════════════════════════════════════════════
    1. CAREER ROADMAPS  — interactive track explorer
@@ -1138,13 +1174,22 @@ nav a.active {
             <a href="about.html">About</a>
             <a href="courses.html">Courses</a>
             <a href="projects.html">Projects &amp; Practice</a>
-            <a href="career-guidance.html" class="active">Career Guidance</a>
-            <a href="#roadmaps" class="section-jump-link">Roadmaps</a>
-            <a href="#internships" class="section-jump-link">Internships</a>
-            <a href="#events" class="section-jump-link">Workshops</a>
-            <a href="#resume" class="section-jump-link">Resume</a>
-            <a href="#interview" class="section-jump-link">Interview Prep</a>
-            <a href="#mentorship" class="section-jump-link">Mentorship</a>
+            <div class="nav-group">
+                <div class="nav-item-row">
+                    <a href="career-guidance.html" class="active">Career Guidance</a>
+                    <button type="button" class="nav-group-toggle" aria-label="Toggle Career Guidance menu" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                </div>
+                <div class="nav-group-children">
+                    <a href="#roadmaps" class="section-jump-link">Roadmaps</a>
+                    <a href="#internships" class="section-jump-link">Internships</a>
+                    <a href="#events" class="section-jump-link">Workshops</a>
+                    <a href="#resume" class="section-jump-link">Resume</a>
+                    <a href="#interview" class="section-jump-link">Interview Prep</a>
+                    <a href="#mentorship" class="section-jump-link">Mentorship</a>
+                </div>
+            </div>
             <a href="faq-contact.html">FAQ &amp; Contact</a>
         </nav>
 
