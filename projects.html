@@ -209,7 +209,24 @@ nav a.active {
         background: #eff6ff;
         border-bottom: none;
     }
+    .section-jump-link {
+        display: block;
+    }
     .logo { width: 170px; }
+}
+
+.section-jump-link {
+    display: none;
+}
+.navbar nav a.section-jump-link {
+    padding-left: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #64748b;
+}
+.navbar nav a.section-jump-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
 }
 
 .navbar-search {
@@ -2878,6 +2895,14 @@ nav a.active {
             <a href="about.html">About</a>
             <a href="courses.html">Courses</a>
             <a href="projects.html" class="active">Projects &amp; Practice</a>
+            <a href="#sec-hero" class="section-jump-link">Overview</a>
+            <a href="#sec-roadmap" class="section-jump-link">Roadmaps</a>
+            <a href="#sec-checklist" class="section-jump-link">Checklist</a>
+            <a href="#sec-difficulty" class="section-jump-link">Difficulty Levels</a>
+            <a href="#sec-spotlight" class="section-jump-link">Featured</a>
+            <a href="#sec-trending" class="section-jump-link">Trending</a>
+            <a href="#sec-projects" class="section-jump-link">All Projects</a>
+            <a href="#sec-practice" class="section-jump-link">Practice Hub</a>
             <a href="career-guidance.html">Career Guidance</a>
             <a href="faq-contact.html">FAQ &amp; Contact</a>
         </nav>
