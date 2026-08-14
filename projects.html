@@ -188,6 +188,25 @@ nav a.active {
     color: #2563eb;
     background: #eff6ff;
 }
+.nav-group { display: contents; }
+.nav-item-row { display: contents; }
+.nav-group-children { display: contents; }
+.nav-group-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 8px 10px;
+}
+.nav-group-toggle svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+.nav-group.open .nav-group-toggle svg {
+    transform: rotate(180deg);
+}
 
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; position: relative; }
@@ -225,6 +244,38 @@ nav a.active {
     }
     .section-jump-link {
         display: block;
+    }
+    .nav-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-item-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-item-row a {
+        flex: 1;
+    }
+    .nav-group-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-group-children {
+        display: none;
+        flex-direction: column;
+    }
+    .nav-group.open .nav-group-children {
+        display: flex;
+    }
+    @media (hover: hover) and (pointer: fine) {
+        .nav-group:hover .nav-group-children {
+            display: flex;
+        }
+        .nav-group:hover .nav-group-toggle svg {
+            transform: rotate(180deg);
+        }
     }
     .logo { width: 170px; }
 }
@@ -2216,6 +2267,10 @@ nav a.active {
         @media (max-width: 600px) {
             .hero-stats { flex-direction: column; gap: 0; }
             .hero-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 14px 0; margin-right: 0; }
+            .hero, .section, .projects-section, .practice-section, .cta-section { padding: 40px 16px; }
+            .category-grid-compact { margin: 0 -16px; }
+            .category-block { padding: 20px 16px 22px; margin-left: 0; margin-right: 0; }
+            .project-grid { grid-template-columns: 1fr; margin: 0 -16px; justify-content: stretch; }
         }
 
         /* ══════════════════════════════════════
@@ -2490,6 +2545,9 @@ nav a.active {
             .spotlight-section { padding: 48px 24px; }
             .spotlight-content { padding: 36px 28px; }
         }
+        @media (max-width: 600px) {
+            .spotlight-section { padding: 36px 16px; }
+        }
 
         /* ══════════════════════════════════════
            ENHANCEMENT 3 — TRENDING PROJECTS
@@ -2657,6 +2715,10 @@ nav a.active {
 
         @media (max-width: 900px) {
             .trending-section { padding: 48px 24px; }
+        }
+        @media (max-width: 600px) {
+            .trending-section { padding: 36px 16px; }
+            .trending-grid { margin: 0 -16px; }
         }
 
 
@@ -2894,15 +2956,24 @@ nav a.active {
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="courses.html">Courses</a>
-            <a href="projects.html" class="active">Projects &amp; Practice</a>
-            <a href="#sec-hero" class="section-jump-link">Overview</a>
-            <a href="#sec-roadmap" class="section-jump-link">Roadmaps</a>
-            <a href="#sec-checklist" class="section-jump-link">Checklist</a>
-            <a href="#sec-difficulty" class="section-jump-link">Difficulty Levels</a>
-            <a href="#sec-spotlight" class="section-jump-link">Featured</a>
-            <a href="#sec-trending" class="section-jump-link">Trending</a>
-            <a href="#sec-projects" class="section-jump-link">All Projects</a>
-            <a href="#sec-practice" class="section-jump-link">Practice Hub</a>
+            <div class="nav-group">
+                <div class="nav-item-row">
+                    <a href="projects.html" class="active">Projects &amp; Practice</a>
+                    <button type="button" class="nav-group-toggle" aria-label="Toggle Projects menu" aria-expanded="false">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                </div>
+                <div class="nav-group-children">
+                    <a href="#sec-hero" class="section-jump-link">Overview</a>
+                    <a href="#sec-roadmap" class="section-jump-link">Roadmaps</a>
+                    <a href="#sec-checklist" class="section-jump-link">Checklist</a>
+                    <a href="#sec-difficulty" class="section-jump-link">Difficulty Levels</a>
+                    <a href="#sec-spotlight" class="section-jump-link">Featured</a>
+                    <a href="#sec-trending" class="section-jump-link">Trending</a>
+                    <a href="#sec-projects" class="section-jump-link">All Projects</a>
+                    <a href="#sec-practice" class="section-jump-link">Practice Hub</a>
+                </div>
+            </div>
             <a href="career-guidance.html">Career Guidance</a>
             <a href="faq-contact.html">FAQ &amp; Contact</a>
         </nav>
