@@ -119,6 +119,18 @@ nav a.active {
 .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.section-jump-link { display: none; }
+.navbar nav a.section-jump-link {
+    padding-left: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #64748b;
+}
+.navbar nav a.section-jump-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
+}
+
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; position: relative; }
     .navbar-search { order: 1; }
@@ -145,18 +157,6 @@ nav a.active {
     .navbar nav a.active { color: #2563eb; background: #eff6ff; border-bottom: none; }
     .section-jump-link { display: block; }
     .logo { width: 170px; }
-}
-
-.section-jump-link { display: none; }
-.navbar nav a.section-jump-link {
-    padding-left: 30px;
-    font-weight: 600;
-    font-size: 13.5px;
-    color: #64748b;
-}
-.navbar nav a.section-jump-link:hover {
-    color: #2563eb;
-    background: #eff6ff;
 }
 
 /* NAVBAR COURSE SEARCH (top-right) */
