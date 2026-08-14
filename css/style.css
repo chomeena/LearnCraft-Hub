@@ -231,6 +231,27 @@ nav a.active {
     background: #eff6ff;
 }
 
+/* Nav groups (Home / About / etc. that expand to show in-page sections) */
+.nav-group { display: contents; }
+.nav-item-row { display: contents; }
+.nav-group-children { display: contents; }
+.nav-group-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 8px 10px;
+}
+.nav-group-toggle svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+}
+.nav-group.open .nav-group-toggle svg {
+    transform: rotate(180deg);
+}
+
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; position: relative; }
     .navbar-search { order: 1; }
@@ -267,6 +288,39 @@ nav a.active {
     }
     .section-jump-link {
         display: block;
+    }
+    .nav-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .nav-item-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-item-row a {
+        flex: 1;
+    }
+    .nav-group-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-group-children {
+        display: none;
+        flex-direction: column;
+    }
+    .nav-group.open .nav-group-children {
+        display: flex;
+    }
+    /* Mouse users: hovering the item auto-expands its sub-menu */
+    @media (hover: hover) and (pointer: fine) {
+        .nav-group:hover .nav-group-children {
+            display: flex;
+        }
+        .nav-group:hover .nav-group-toggle svg {
+            transform: rotate(180deg);
+        }
     }
     .logo { width: 170px; }
     .navbar-search-panel {
@@ -695,6 +749,13 @@ nav a.active {
 @media (max-width: 600px) {
     .course-container {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .courses {
+        padding: 32px 16px;
+    }
+    .course-container {
+        margin: 0 -16px;
+        gap: 10px;
     }
 }
 @media (max-width: 420px) {
@@ -1170,6 +1231,13 @@ nav a.active {
 @media (max-width: 600px) {
     .features {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .why-us {
+        padding: 32px 16px;
+    }
+    .features {
+        margin: 0 -16px;
+        gap: 12px;
     }
 }
 @media (max-width: 420px) {
@@ -2445,6 +2513,22 @@ nav a.active {
     box-shadow: 0 18px 38px rgba(0,0,0,0.12);
 }
 
+@media (max-width: 600px) {
+    .packages {
+        padding: 36px 16px;
+    }
+    .package-container {
+        grid-template-columns: 1fr;
+        margin: 0 -16px;
+        gap: 16px;
+        max-width: none;
+    }
+    .package-card {
+        max-width: none;
+        margin: 0;
+    }
+}
+
 .package-card.featured {
     border-color: #b45309;
     border-top-color: #b45309;
@@ -3226,6 +3310,18 @@ nav a.active {
     .our-journey,
     .team-section {
         padding: 22px 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    .team-section {
+        padding: 22px 16px;
+    }
+    .team-container {
+        grid-template-columns: 1fr;
+        margin: 20px -16px 0;
+        gap: 14px;
+        max-width: none;
     }
 }
 
@@ -4935,6 +5031,18 @@ nav a.active {
     .category-heading {
         flex-direction: column;
         gap: 4px;
+    }
+}
+
+@media (max-width: 600px) {
+    .course-grid-section {
+        padding: 30px 16px 10px;
+    }
+    .category-grid {
+        margin: 0 -16px;
+    }
+    .full-course-grid {
+        margin: 0 -16px;
     }
 }
 
