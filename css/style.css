@@ -261,6 +261,7 @@ nav a.active {
 }
 
 @media (max-width: 880px) {
+    header { padding: 14px 20px; }
     .navbar { flex-wrap: wrap; position: relative; }
     .navbar-search { order: 1; }
     .nav-toggle { display: flex; order: 2; }
