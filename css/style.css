@@ -1903,6 +1903,8 @@ nav a.active {
 
 .newsletter-form input {
     flex: 1;
+    min-width: 0;
+    box-sizing: border-box;
     padding: 11px 18px;
     border-radius: 999px;
     border: 1.5px solid #cbd5e1;
@@ -1926,6 +1928,21 @@ nav a.active {
 .newsletter-form button:hover {
     background: #142a63;
     transform: translateY(-2px);
+}
+
+@media (max-width: 500px) {
+    .newsletter {
+        padding: 28px 16px;
+    }
+    .newsletter-form {
+        flex-direction: column;
+        max-width: 340px;
+    }
+    .newsletter-form input,
+    .newsletter-form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 /* FOOTER */
 .footer {
