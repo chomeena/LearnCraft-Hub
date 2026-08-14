@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body{
     margin: 0;
     font-family: 'Inter', Arial, sans-serif;
     background-color: #f5f7fb;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 /* HEADER */
@@ -212,9 +219,9 @@ nav a.active {
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; }
     .navbar-search { order: 1; }
-    .nav-toggle { display: flex; order: 2; }
+    .nav-toggle { display: none; }
     .navbar nav {
-        display: none;
+        display: flex;
         flex-basis: 100%;
         order: 3;
         flex-direction: column;
@@ -225,7 +232,6 @@ nav a.active {
         margin-top: 14px;
         padding: 6px;
     }
-    .navbar nav.open { display: flex; }
     .navbar nav a {
         margin: 0;
         padding: 13px 14px;
@@ -799,6 +805,19 @@ nav a.active {
     width: 100%;
     box-sizing: border-box;
 }
+@media (max-width: 600px) {
+    .testimonials {
+        padding: 32px 16px 32px;
+    }
+    .slider-container {
+        gap: 6px;
+    }
+    .arrow {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+}
 
 .testimonial-intro {
     color: #475569;
@@ -823,7 +842,8 @@ nav a.active {
     scroll-snap-type: x mandatory;
     gap: 18px;
     max-width: 1480px;
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 @media (max-width: 900px) {
