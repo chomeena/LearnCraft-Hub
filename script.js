@@ -60,7 +60,7 @@ function remToast(title, body) {
         document.body.appendChild(box);
     }
     const t = document.createElement('div');
-    t.style.cssText = 'background:#0c0e1a;color:#fff;padding:14px 18px;border-radius:12px;max-width:300px;box-shadow:0 12px 32px rgba(0,0,0,.3);font-family:Inter,Arial,sans-serif;animation:remToastIn .25s ease';
+    t.style.cssText = 'background:#0c0e1a;color:#fff;padding:14px 18px;border-radius:12px;max-width:min(300px, calc(100vw - 48px));box-shadow:0 12px 32px rgba(0,0,0,.3);font-family:Inter,Arial,sans-serif;animation:remToastIn .25s ease';
     t.innerHTML = '<div style="font-weight:700;font-size:13.5px;margin-bottom:4px">🔔 ' + title + '</div><div style="font-size:12.5px;color:#cbd5e1;line-height:1.5">' + body + '</div>';
     box.appendChild(t);
     setTimeout(() => { t.style.transition = 'opacity .3s'; t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 8000);
