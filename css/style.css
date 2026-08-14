@@ -250,11 +250,29 @@ nav a.active {
         background: #eff6ff;
         border-bottom: none;
     }
+    .section-jump-link {
+        display: block;
+    }
     .logo { width: 170px; }
     .navbar-search-panel {
         width: calc(100vw - 40px);
         right: -10px;
     }
+}
+
+/* SECTION-JUMP LINKS (in-page anchors) inside the mobile dropdown — hidden on desktop since the floating side-nav already covers that there */
+.section-jump-link {
+    display: none;
+}
+.navbar nav a.section-jump-link {
+    padding-left: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #64748b;
+}
+.navbar nav a.section-jump-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
 }
 
 /* NAVBAR COURSE SEARCH (top-right) */
@@ -817,12 +835,11 @@ nav a.active {
         padding: 32px 16px 32px;
     }
     .slider-container {
-        gap: 6px;
+        gap: 0;
+        margin: 0 -16px;
     }
     .arrow {
-        width: 28px;
-        height: 28px;
-        font-size: 13px;
+        display: none;
     }
 }
 
@@ -7454,10 +7471,27 @@ body.modal-open { overflow: hidden; }
     transition: opacity 0.25s ease, transform 0.25s ease;
     pointer-events: none;
     white-space: nowrap;
+    max-width: calc(100% - 40px);
+    box-sizing: border-box;
+    text-align: center;
 }
 .enroll-toast.show {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 520px) {
+    .enroll-toast {
+        white-space: normal;
+        width: calc(100% - 32px);
+        left: 16px;
+        right: 16px;
+        transform: translateY(20px);
+        padding: 12px 18px;
+    }
+    .enroll-toast.show {
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 780px) {
