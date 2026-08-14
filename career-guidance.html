@@ -316,6 +316,13 @@ nav a.active {
 .hj-icon{font-size:1.05rem;margin-bottom:3px}
 .hj-label{font-size:10.5px;font-weight:700;color:rgba(255,255,255,.5)}
 .hj-step.active .hj-label{color:#c4b5fd}
+@media(max-width:640px){
+  .hero-journey{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible}
+  .hj-step{border-right:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}
+  .hj-step:nth-child(3n){border-right:none}
+  .hj-step:nth-last-child(-n+3){border-bottom:none}
+  .hj-label{font-size:9.5px}
+}
 
 /* ═══════════════════════════════════════════════════════
    STICKY SECTION NAV
