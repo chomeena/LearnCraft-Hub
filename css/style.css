@@ -216,6 +216,21 @@ nav a.active {
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* SECTION-JUMP LINKS (in-page anchors) inside the mobile dropdown — hidden on desktop since the floating side-nav already covers that there */
+.section-jump-link {
+    display: none;
+}
+.navbar nav a.section-jump-link {
+    padding-left: 30px;
+    font-weight: 600;
+    font-size: 13.5px;
+    color: #64748b;
+}
+.navbar nav a.section-jump-link:hover {
+    color: #2563eb;
+    background: #eff6ff;
+}
+
 @media (max-width: 880px) {
     .navbar { flex-wrap: wrap; position: relative; }
     .navbar-search { order: 1; }
@@ -258,21 +273,6 @@ nav a.active {
         width: calc(100vw - 40px);
         right: -10px;
     }
-}
-
-/* SECTION-JUMP LINKS (in-page anchors) inside the mobile dropdown — hidden on desktop since the floating side-nav already covers that there */
-.section-jump-link {
-    display: none;
-}
-.navbar nav a.section-jump-link {
-    padding-left: 30px;
-    font-weight: 600;
-    font-size: 13.5px;
-    color: #64748b;
-}
-.navbar nav a.section-jump-link:hover {
-    color: #2563eb;
-    background: #eff6ff;
 }
 
 /* NAVBAR COURSE SEARCH (top-right) */
@@ -835,11 +835,12 @@ nav a.active {
         padding: 32px 16px 32px;
     }
     .slider-container {
-        gap: 0;
-        margin: 0 -16px;
+        gap: 6px;
     }
     .arrow {
-        display: none;
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
     }
 }
 
