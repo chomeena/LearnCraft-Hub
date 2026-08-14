@@ -253,9 +253,9 @@ nav a.active {
 }
 
 @media (max-width: 880px) {
-    .navbar { flex-wrap: nowrap; position: relative; }
-    .navbar-search { order: 1; flex-shrink: 0; }
-    .nav-toggle { display: flex; order: 2; flex-shrink: 0; }
+    .navbar { flex-wrap: wrap; position: relative; }
+    .navbar-search { order: 1; }
+    .nav-toggle { display: flex; order: 2; }
     .navbar nav {
         display: none;
         position: absolute;
@@ -322,31 +322,10 @@ nav a.active {
             transform: rotate(180deg);
         }
     }
-    .logo {
-        width: clamp(90px, 32vw, 170px);
-        flex-shrink: 1;
-        min-width: 0;
-    }
+    .logo { width: 170px; }
     .navbar-search-panel {
         width: calc(100vw - 40px);
         right: -10px;
-    }
-    .navbar-search { flex-shrink: 0; }
-    .nav-toggle { flex-shrink: 0; }
-}
-
-@media (max-width: 480px) {
-    header { padding: 12px 16px; }
-    .logo {
-        width: clamp(80px, 34vw, 120px);
-        flex-shrink: 1;
-        min-width: 0;
-    }
-    .navbar-search { margin-left: 10px; }
-    .nav-toggle { margin-left: 8px; }
-    .navbar-search-panel {
-        width: calc(100vw - 32px);
-        right: -8px;
     }
 }
 
@@ -744,7 +723,7 @@ nav a.active {
 .course-container{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 0.5%;
+    gap: 16px;
     max-width: 1480px;
     margin: 0 auto;
 }
@@ -752,10 +731,10 @@ nav a.active {
 .course-card{
     background: white;
     width: auto;
-    padding: 18px;
-    border-radius: 16px;
+    padding: 16px;
+    border-radius: 14px;
     border: 1px solid #e2e8f0;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
+    box-shadow: 0px 3px 12px rgba(0,0,0,0.06);
     transition: 0.3s;
     display: flex;
     flex-direction: column;
@@ -771,13 +750,10 @@ nav a.active {
 @media (max-width: 600px) {
     .course-container {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     .courses {
         padding: 32px 16px;
-    }
-    .course-container {
-        margin: 0 -16px;
-        gap: 0.5%;
     }
 }
 @media (max-width: 420px) {
